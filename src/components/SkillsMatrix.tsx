@@ -1,6 +1,8 @@
+type ColorVariant = 'emerald' | 'red' | 'blue' | 'violet';
+
 interface Skill {
   label: string;
-  colorVariant: string;
+  colorVariant: ColorVariant;
 }
 
 interface SkillsCategory {
@@ -13,6 +15,7 @@ const categories: SkillsCategory[] = [
     title: 'Languages',
     subcategories: [
       { label: 'Python', colorVariant: 'emerald' },
+      { label: 'TypeScript', colorVariant: 'emerald' },
       { label: 'JavaScript', colorVariant: 'emerald' },
       { label: 'HTML', colorVariant: 'emerald' },
       { label: 'CSS', colorVariant: 'emerald' },
@@ -46,6 +49,7 @@ const categories: SkillsCategory[] = [
       { label: 'react-router', colorVariant: 'red' },
       { label: 'axios', colorVariant: 'red' },
       { label: 'mui', colorVariant: 'red' },
+      { label: 'shadcn/ui', colorVariant: 'red' },
       { label: 'flask', colorVariant: 'red' },
       { label: 'puppeteer', colorVariant: 'red' }
     ]
