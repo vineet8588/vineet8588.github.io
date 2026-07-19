@@ -8,7 +8,7 @@ Combines a proven track record of driving end-to-end automation features and sec
 ## TECHNICAL SKILLS
 * **Languages:** Python, JavaScript, HTML, CSS, SQL
 * **Frameworks:** CRA, Node.js, Flask, Next.js, Django REST framework
-* **Developer Tools:** Git, Docker, AWS, VS Code
+* **Developer Tools:** Git, Docker, AWS (API Gateway, CloudFront, ECS, Lambda, IAM, CodeBuild, CloudWatch, ALB, EC2, S3), VS Code
 * **Libraries:** react, djangorestframework, react-router, axios, mui, flask, puppeteer
 
 ## EXPERIENCE

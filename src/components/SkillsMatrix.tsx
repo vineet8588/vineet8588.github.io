@@ -63,12 +63,16 @@ const categories: SkillsCategory[] = [
   {
     title: 'Cloud / AWS',
     subcategories: [
-      { label: 'ECS', colorVariant: 'blue' },
       { label: 'API Gateway', colorVariant: 'blue' },
       { label: 'CloudFront', colorVariant: 'blue' },
+      { label: 'ECS', colorVariant: 'blue' },
       { label: 'Lambda', colorVariant: 'blue' },
+      { label: 'IAM', colorVariant: 'blue' },
       { label: 'CodeBuild', colorVariant: 'blue' },
-      { label: 'ALB', colorVariant: 'blue' }
+      { label: 'CloudWatch', colorVariant: 'blue' },
+      { label: 'ALB', colorVariant: 'blue' },
+      { label: 'EC2', colorVariant: 'blue' },
+      { label: 'S3', colorVariant: 'blue' }
     ]
   }
 ];

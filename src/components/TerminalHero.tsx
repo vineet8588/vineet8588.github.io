@@ -33,7 +33,7 @@ const infoGroups: InfoGroup[] = [
       { label: "Frameworks", value: "CRA, Node.js, Flask, Next.js, Django REST" },
       { label: "Tools", value: "Git, Docker, AWS, VS Code" },
       { label: "GenAI", value: "RAG, Vector DBs, Prompt Eng, DSPy, Chonkie" },
-      { label: "AWS", value: "ECS, API GW, CloudFront, Lambda, CodeBuild" },
+      { label: "AWS", value: "API Gateway, CloudFront, ECS, Lambda, IAM, CodeBuild, CloudWatch, ALB, EC2, S3" },
     ],
   },
   {
