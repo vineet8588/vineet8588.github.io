@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import asciiArt from '../assets/ascii.txt?raw';
+import Navbar from '../components/Navbar.tsx';
+import TerminalHero from '../components/TerminalHero.tsx';
+import SkillsMatrix from '../components/SkillsMatrix.tsx';
+import FeaturedProjects from '../components/FeaturedProjects.tsx';
+import ExperienceTimeline from '../components/ExperienceTimeline.tsx';
+import ContactFooter from '../components/ContactFooter.tsx';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Developer Portfolio</title>
+  <meta name="description" content="A premium full-stack developer portfolio showcasing cutting-edge architecture and AI-powered solutions.">
+  <meta property="og:title" content="Full Stack Developer Portfolio">
+  <meta property="og:description" content="Engineer-grade portfolio with AI integrations and scalable architectures.">
+  <meta property="og:image" content="https://example.com/portfolio-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script is:inline>
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    })();
+    if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    window.localStorage.setItem('theme', theme);
+  </script>
+</head>
+
+<body class="text-slate-900 dark:text-zinc-100 min-h-screen font-sans antialiased selection:bg-emerald-500/30">
+  <Navbar client:load />
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 space-y-24">
+    <section id="hero">
+      <TerminalHero asciiText={asciiArt} client:load />
+    </section>
+
+    <section id="skills" class="space-y-8">
+      <h2 class="text-3xl font-bold tracking-tight">Technical Arsenal</h2>
+      <SkillsMatrix client:visible />
+    </section>
+
+    <section id="projects" class="space-y-8">
+      <h2 class="text-3xl font-bold tracking-tight">Featured Architecture & Projects</h2>
+      <FeaturedProjects client:visible />
+    </section>
+
+    <section id="experience" class="space-y-8">
+      <h2 class="text-3xl font-bold tracking-tight">Command History (Experience)</h2>
+      <ExperienceTimeline client:visible />
+    </section>
+
+    <section id="contact" class="space-y-8">
+      <ContactFooter client:visible />
+    </section>
+  </main>
+</body>
+</html>
