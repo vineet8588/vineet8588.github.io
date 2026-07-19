@@ -4,51 +4,36 @@ This file records tasks from the project todo list that are **not yet done** or 
 
 ## Known Gaps & Follow-ups
 
-- [ ] **Lighthouse 100 score not verified**
-  - The AGENTS.md targets a 100 Lighthouse score. No audit has been run. Performance depends on asset optimization (e.g., `profile.jpg` is 1.1M and unoptimized) and hosting setup.
+- [ ] **FeaturedProjects is a placeholder**
+  - Card shows "Will Be Updated" with fake `Tech 1-4` and links to `github.com/vineet8588` + `vineetyadav.vercel.app`. Owner will replace with real projects (INFO.md has Face Recognition Entry System + LMSUIET, currently commented out in the file). Needs real per-project GitHub/live URLs. *(Owner deferred — content task, out of scope for now.)*
 
-- [ ] **Profile image is a placeholder**
-  - `public/profile.jpg` is a generic 1.1M file. Replace with the actual developer photo and consider compression/responsive sizing.
+- [ ] **Lighthouse audit (owner-run)**
+  - AGENTS.md targets a 100 Lighthouse score. Owner will run the audit and report the score back. Optimization (e.g. compress/responsive-size `profile.jpg`, hosting tuning) to be done based on the reported results. No audit executed by the agent.
 
-- [ ] **Project GitHub / live URLs are placeholders**
-  - `INFO.md` has no repo or demo links. `FeaturedProjects.tsx` currently points all cards to `github.com/vineet8588` (no per-project repos) and `liveUrl: '#'`. Need real per-project URLs when available.
+- [ ] **CLAUDE.md symlink removed**
+  - The `CLAUDE.md -> AGENTS.md` symlink has been deleted locally. Both files are untracked + gitignored (private), so this has no repo or deployed-site impact. Kept as a note for visibility.
 
-- [ ] **INFO.md sections not yet surfaced on the site**
-  - **Education** (B.E. CSE, UIET Panjab Univ., CGPA 8.32), **Awards & Certifications** (HackUIET 4th, Infosys Makeathon top 6, Deloitte Applause/Spot, Coursera React/Bootstrap, PCAP Python, Great Learning GenAI), and **Internship BGUS** are in INFO.md but only Experience/Delaware + BGUS appear in the timeline. Add an Education/Awards section or weave into timeline.
-  - No dedicated "About / Introduction" paragraph from INFO.md is rendered verbatim — the intro line is only echoed in the terminal hero prompt. Consider adding a short bio section.
+- [ ] **GitHub Pages ignores `_headers`**
+  - The full-strength security headers in `public/_headers` only apply on Netlify/Cloudflare. On the current GitHub Pages host, only the meta CSP in `index.astro` is enforced. If migrating hosts, `_headers` activates automatically.
 
-- [ ] **Lucide brand icons missing (v1 dropped them)**
-  - `Github`, `LinkedIn`, `Twitter` were removed from `lucide-react` v1. We substituted `GitGraph`, `Send`, `AtSign` as stand-ins (Twitter dropped from footer in favor of Email). For accurate brand icons, add `react-icons` (e.g., `react-icons/fa` / `react-icons/si`) or inline SVGs.
-
-- [ ] **README references non-existent npm scripts**
-  - `README.md` mentions `npm run audit` and `npm run build -- --report` which are not defined in `package.json`.
-
-- [ ] **No automated tests / lint / typecheck scripts**
-  - `package.json` only has `dev`, `build`, `preview`, `astro`. No `lint` or `typecheck` script despite AGENTS.md mentioning them.
-
-- [ ] **ContactFooter / ExperienceTimeline not wired to editable data files**
-  - Experience and projects are hardcoded arrays inside components. Consider moving to a shared data module or content collection for easier editing.
-
-- [ ] **No deployment configuration**
-  - No CI, no `astro.config` adapter, no `robots.txt`, no sitemap, no OpenGraph image at the referenced `https://example.com/portfolio-og.png`.
-
-- [ ] **`CLAUDE.md` is a symlink to AGENTS.md**
-  - `CLAUDE.md -> AGENTS.md` exists. Decide whether to keep it or make it independent.
-
-## Resolved (kept for history — moved to TASKS_DONE.md)
-- [x] ASCII art scrollbars → shrank font, removed overflow, added no-scrollbar (seamless L/R).
-- [x] SkillsMatrix dark chips low contrast → now use light `-300` text on subtle bg.
-- [x] Light mode too basic → warm cream + emerald/crimson gradient + visible warm grid.
-- [x] AGENTS.md mandatory task-tracking instruction added (Section 0).
-- [x] Dark mode appeared light → base `body` background-color overridden in `.dark body`.
-- [x] ASCII art cropped on right → responsive grid + `w-max` pre, no `overflow-hidden`.
-- [x] Green divider line next to ASCII art removed.
+## Resolved (moved to TASKS_DONE.md)
+- [x] Initial project init, config, assets, all 6 components built per spec.
+- [x] ThemeToggle functional; TerminalHero glow + ASCII fixes (scrollbar/crop/green line); SkillsMatrix dark chip contrast.
+- [x] Light mode warm + visible grid; dark mode regression fixed.
+- [x] Filled all sections from INFO.md (SkillsMatrix 6 categories, Experience Deloitte + BGUS, Contact links, About bio + Education/Certifications).
+- [x] SEO: sitemap, canonical/OG/Twitter/JSON-LD meta, robots.txt.
+- [x] Security: meta CSP + Referrer-Policy + X-Content-Type-Options; `_headers` for Netlify/Cloudflare.
+- [x] Timeline dot alignment fixed (`-left-[9px] top-1`).
+- [x] AWS services expanded to 10 (EC2, IAM, S3, CloudWatch, ALB) + ordered most→least impressive in INFO.md/SkillsMatrix/TerminalHero.
+- [x] Cert links added to About sidebar (PCAP, Coursera React/Bootstrap, Great Learning).
+- [x] Private docs (AGENTS.md/CLAUDE.md/INFO.md) untracked on both branches + gitignored.
+- [x] Profile image replaced with the real photo (`public/profile.jpg`, 396K, 1625×1625).
+- [x] Added `lint` + `typecheck` npm scripts (ESLint flat config + `astro check`) — tooling only, no website content changed.
+- [x] Removed dead `asciiArt` import in TerminalHero; typed `colorVariant` union in SkillsMatrix (typecheck clean).
+- [x] Added TypeScript (Languages) and shadcn/ui (Libraries) to portfolio content per INFO.md.
+- [x] Deleted `CLAUDE.md` symlink locally (untracked/gitignored; no repo/site impact).
 
 ## Suggested Next Steps
-1. Add Education + Awards/Certifications section (data already in INFO.md).
-2. Add a short About/Introduction bio block from INFO.md.
-3. Fill real per-project GitHub/live URLs once available.
-4. Add real brand icons via `react-icons` or inline SVG.
-5. Run a Lighthouse audit and optimize `profile.jpg`.
-6. Add `lint` / `typecheck` / `audit` scripts to `package.json`.
-7. Configure deployment (adapter + CI + OG image).
+1. Populate FeaturedProjects with real projects + per-project URLs (owner task).
+2. Run Lighthouse audit (owner) and optimize `profile.jpg` / hosting per results.
+3. Consider migrating hosting to Netlify/Cloudflare to activate `_headers` security layer.

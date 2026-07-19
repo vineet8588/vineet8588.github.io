@@ -1,142 +1,118 @@
 # Premium Full Stack Developer Portfolio
 
-A high-performance, recruiter-optimized portfolio website built with **Astro**, **React**, **Tailwind CSS**, and **shadcn/ui**.
+A high-performance, recruiter-optimized portfolio website built with **Astro**, **React**, **Tailwind CSS v4**, and **shadcn/ui** primitives.
+
+> Personal site for **Vineet Yadav** — Full-Stack & GenAI Developer. Content is sourced from `INFO.md` (kept private / gitignored).
 
 ## Design Aesthetic
-- **Dark Mode**: Premium hacker vibe with deep zinc backgrounds, neon emerald greens, and crimson red accents
-- **Light Mode**: Exceptionally clean, professional appearance
-- **Performance**: Optimized for 100 Lighthouse score with deferred React hydration
+- **Dark Mode**: Premium hacker vibe — deep zinc background, emerald greens, crimson accents, subtle grid + radial glow.
+- **Light Mode**: Warm cream paper with a visible grid and the same emerald/crimson glow.
+- **Performance**: Optimized for a high Lighthouse score via deferred React hydration (`client:visible` below the fold).
 
 ## Tech Stack
-- **Framework**: Astro (latest)
+- **Framework**: Astro v7
 - **UI Library**: React 19
-- **Styling**: Tailwind CSS v4
-- **Components**: shadcn/ui
-- **Icons**: Lucide React
+- **Styling**: Tailwind CSS v4 (via `@tailwindcss/vite`)
+- **Component primitives**: shadcn/ui (under `src/components/ui/`)
+- **Icons**: `lucide-react` (UI icons) + `react-icons` (brand icons: GitHub, LinkedIn)
+- **SEO**: `@astrojs/sitemap`
+- **Fonts**: JetBrains Mono + Geist (variable, via `@fontsource-variable`)
 
 ## Project Structure
 ```
 portfolio/
 ├── src/
 │   ├── assets/
-│   │   ├── ascii.txt          # ASCII art for terminal hero
+│   │   └── ascii.txt            # ASCII art for the terminal hero
 │   ├── components/
-│   │   ├── Navbar.tsx          # Fixed navbar with brand logo + theme toggle
-│   │   ├── TerminalHero.tsx    # Mac-style terminal with ASCII art
-│   │   ├── SkillsMatrix.tsx    # Skill category cards with pill tags
-│   │   ├── FeaturedProjects.tsx # Project grid with hover effects
-│   │   ├── ExperienceTimeline.tsx # Vertical timeline of experience
-│   │   ├── ContactFooter.tsx   # CTA + footer with social links
-│   │   └── ui/                 # shadcn/ui components
+│   │   ├── Navbar.tsx           # Fixed glass nav, brand `while (alive) ship();`, theme toggle, avatar
+│   │   ├── TerminalHero.tsx     # Mac-style terminal + neofetch data groups
+│   │   ├── SkillsMatrix.tsx     # 6 skill category cards with pill tags
+│   │   ├── FeaturedProjects.tsx # Project grid (currently a placeholder card)
+│   │   ├── ExperienceTimeline.tsx # Vertical timeline, Deloitte USI + BGUS
+│   │   ├── ContactFooter.tsx    # CTA + footer (GitHub / LinkedIn / Email)
+│   │   ├── ui/                  # shadcn/ui primitives (button, card, badge, ...)
+│   │   └── lib/utils.ts         # `cn()` helper
 │   ├── pages/
-│   │   └── index.astro         # Main page assembly
+│   │   └── index.astro          # Page assembly, SEO meta + JSON-LD, meta CSP, About section
 │   └── styles/
-│       └── global.css          # Tailwind + custom theme
+│       └── global.css           # Tailwind v4 theme, brand colors, light/dark backgrounds
 ├── public/
-│   └── profile.jpg             # Profile image (placeholder)
-├── astro.config.mjs
-├── tsconfig.json
+│   ├── profile.jpg              # Profile image (real photo)
+│   ├── favicon.ico / favicon.svg
+│   ├── robots.txt               # references sitemap-index.xml
+│   └── _headers                 # security headers (Netlify/Cloudflare hosts; ignored by GitHub Pages)
+├── astro.config.mjs             # React + sitemap integrations, site URL
+├── eslint.config.js             # ESLint flat config
+├── tsconfig.json                # `@/*` path alias
 └── package.json
 ```
+
+> Note: `AGENTS.md`, `CLAUDE.md`, and `INFO.md` are intentionally **untracked and gitignored** (private, not part of the repo or deployed site).
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js v16+ (tested with Node v24)
-- npm v7+
+- Node.js >= 22.12 (CI uses Node 22)
+- npm
 
 ### Installation
 ```bash
-# Clone or navigate to the project
-cd portfolio
-
-# Install dependencies (already done)
 npm install
 ```
 
-### Running Locally
+### Scripts
 ```bash
-# Start development server (http://localhost:4321)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev        # dev server (http://localhost:4321)
+npm run build      # production build -> dist/ (also emits sitemap-index.xml + sitemap-0.xml)
+npm run preview    # preview the production build
+npm run astro      # raw astro CLI
+npm run typecheck  # astro check (type-checks .astro + .tsx)
+npm run lint       # eslint . (flat config)
 ```
 
-## Component Documentation
+## Sections
+| Section | Source | Notes |
+|---|---|---|
+| Hero (TerminalHero) | `INFO.md` | neofetch-style groups: identity, Languages, Stack (Frameworks/Tools/GenAI/AWS), Contact |
+| About | `INFO.md` | Bio + Education (B.E. CSE, UIET Panjab Univ., CGPA 8.32) + Certifications (linkable verify URLs) |
+| Skills | `INFO.md` | 6 categories: Languages, Frameworks, Developer Tools, Libraries, AI/ML, Cloud/AWS (10 AWS services) |
+| Experience | `INFO.md` | Deloitte USI (3 roles) + BGUS Australia internship |
+| Projects | owner | `FeaturedProjects.tsx` is a "Will Be Updated" placeholder — replace with real projects |
+| Contact | `INFO.md` | GitHub / LinkedIn / Email links |
 
-### Navbar (`Navbar.tsx`)
-- Fixed top navigation with glassmorphism effect
-- Brand logo: `const portfolio = new Developer();` with syntax highlighting
-- Hover-animated nav links to sections (`#projects`, `#experience`, `#skills`, `#contact`)
-- Sun/Moon theme toggle icons
-
-### TerminalHero (`TerminalHero.tsx`)
-- macOS-style terminal window with traffic light dots
-- Left: ASCII art from `ascii.txt`
-- Right: Neofetch-style info (Role, Location, Clearance, Focus)
-- Neon glow border effect
-
-### SkillsMatrix (`SkillsMatrix.tsx`)
-- Grid of category cards: Frontend, Backend, Cloud/AWS, AI/ML
-- Each category contains pill-shaped skill tags
-- Hover effects on cards and tags
-
-### FeaturedProjects (`FeaturedProjects.tsx`)
-- 2-column responsive grid of project cards
-- Hover lift effect (`hover:-translate-y-2`)
-- Tech stack badges + GitHub/External links
-- Image placeholder areas
-
-### ExperienceTimeline (`ExperienceTimeline.tsx`)
-- Vertical timeline with dots on a left border
-- Date, role, company, and quantified bullet points
-- Each entry emphasizes metrics (cost reduction, retention improvement)
-
-### ContactFooter (`ContactFooter.tsx`)
-- CTA section: "Ready to build something impactful?"
-- Glowing `Let's Talk` mailto button
-- Social links (GitHub, LinkedIn, Twitter)
-- Footer note: "Built with Astro & React."
+## SEO & Security
+- **Sitemap**: `@astrojs/sitemap` -> `dist/sitemap-index.xml`; `public/robots.txt` points to it.
+- **Meta**: canonical, robots, keywords, author, `color-scheme`, dual `theme-color`, full Open Graph, Twitter (`creator`), and a JSON-LD `Person` schema — all in `src/pages/index.astro`.
+- **Security**:
+  - `index.astro` `<head>`: meta CSP, `Referrer-Policy`, `X-Content-Type-Options`.
+  - `public/_headers`: full-strength headers (X-Frame-Options, HSTS, Permissions-Policy, CSP) for hosts that support `_headers` (Netlify/Cloudflare). **GitHub Pages ignores `_headers`**, so the meta CSP is the enforced layer there.
 
 ## Customization
+1. **Skills**: edit the `categories` array in `SkillsMatrix.tsx`.
+2. **Projects**: edit the `projects` array in `FeaturedProjects.tsx`.
+3. **Experience**: edit `experienceEntries` in `ExperienceTimeline.tsx`.
+4. **Profile image**: replace `public/profile.jpg`.
+5. **Social / contact links**: update `ContactFooter.tsx` and the `Contact` group in `TerminalHero.tsx`.
+6. **Theme colors**: edit `src/styles/global.css` (`:root` / `.dark` brand colors + backgrounds).
 
-### Update Content
-1. **Skills**: Edit the `categories` array in `SkillsMatrix.tsx`
-2. **Projects**: Edit the `projects` array in `FeaturedProjects.tsx`
-3. **Experience**: Edit the `experienceEntries` array in `ExperienceTimeline.tsx`
-4. **Profile Image**: Replace `public/profile.jpg` with your photo
-5. **Social Links**: Update URLs in `ContactFooter.tsx`
-
-### Theme Colors
-- Edit CSS variables in `src/styles/global.css` under `:root` and `.dark`
-- Primary: emerald green (`--emerald`)
-- Accent: crimson red (`--crimson`)
-- Dark background: zinc (`--zinc-950`)
-
-### Add New Sections
-1. Create component in `src/components/`
-2. Import in `src/pages/index.astro`
-3. Add with `client:visible` for below-the-fold components
+To add a section: create a component in `src/components/`, import it in `src/pages/index.astro`, and use `client:visible` for below-the-fold components.
 
 ## Performance Notes
-- `client:load` for above-the-fold (Navbar, TerminalHero)
-- `client:visible` for below-the-fold (Skills, Projects, Experience, Footer)
-- Pure Astro + React islands architecture
+- `client:load` for above-the-fold (Navbar, TerminalHero).
+- `client:visible` for below-the-fold (Skills, Projects, Experience, Contact).
+- Pure Astro + React islands architecture; sitemap generated at build.
 
 ## Build Status
-- ✅ Production build passes (`npm run build`)
-- ✅ All components compile without errors
-- ✅ Dark/light mode toggle works
-- ⚠️ Lighthouse 100 score depends on asset optimization and hosting
+- ✅ `npm run build` passes.
+- ✅ `npm run typecheck` (astro check) — 0 errors.
+- ✅ `npm run lint` (eslint) — clean.
+- ⚠️ Lighthouse score: owner-run audit pending; optimize `profile.jpg` / hosting based on results.
 
 ## Troubleshooting
-- **Build fails**: Check that all lucide-react icons exist (this version removed `Github`, `LinkedIn`, `Twitter` - use `GitGraph`, `Send`, `AtSign` instead)
-- **Dark mode flicker**: The inline script in `<head>` prevents FOUC
-- **Astro version**: Using Astro v7 with React 19
+- **Brand icons**: `lucide-react` v1 dropped `Github`/`LinkedIn`/`Twitter`, so brand icons use `react-icons` (`FaGithub`, `FaLinkedinIn`) in `ContactFooter.tsx` and `Navbar.tsx`.
+- **Dark mode flicker (FOUC)**: prevented by the inline script in `<head>` of `index.astro`.
+- **Astro version**: Astro v7 + React 19 + Tailwind v4.
 
 ## License
-This is a portfolio template. Replace placeholder content before deploying.
+Personal portfolio. Replace content with your own before reusing the template.

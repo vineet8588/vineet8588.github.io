@@ -1,5 +1,3 @@
-import asciiArt from '../assets/ascii.txt?raw';
-
 interface InfoRow {
   label: string;
   value: string;
@@ -24,7 +22,7 @@ const infoGroups: InfoGroup[] = [
   {
     title: "Languages",
     rows: [
-      { label: "Programming", value: "Python, JavaScript, HTML, CSS, SQL" },
+      { label: "Programming", value: "Python, TypeScript, JavaScript, HTML, CSS, SQL" },
     ],
   },
   {
