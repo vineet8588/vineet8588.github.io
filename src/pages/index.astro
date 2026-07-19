@@ -7,6 +7,11 @@ import SkillsMatrix from '../components/SkillsMatrix.tsx';
 import FeaturedProjects from '../components/FeaturedProjects.tsx';
 import ExperienceTimeline from '../components/ExperienceTimeline.tsx';
 import ContactFooter from '../components/ContactFooter.tsx';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const title = 'Vineet Yadav — Full-Stack & GenAI Developer';
+const description = 'Full-Stack and GenAI Developer proficient in React, Django, and AWS. End-to-end automation, secure deployments, and LLM integrations.';
+const ogImage = new URL('/profile.jpg', Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -14,12 +19,72 @@ import ContactFooter from '../components/ContactFooter.tsx';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vineet Yadav — Full-Stack & GenAI Developer</title>
-  <meta name="description" content="Full-Stack and GenAI Developer proficient in React, Django, and AWS. End-to-end automation, secure deployments, and LLM integrations.">
-  <meta property="og:title" content="Vineet Yadav — Full-Stack & GenAI Developer">
-  <meta property="og:description" content="Full-Stack and GenAI Developer proficient in React, Django, and AWS infrastructure.">
-  <meta property="og:image" content="https://vineet8588.github.io/profile.jpg">
+  <meta name="generator" content={Astro.generator}>
+
+  <title>{title}</title>
+  <link rel="canonical" href={canonicalURL}>
+
+  <meta name="description" content={description}>
+  <meta name="author" content="Vineet Yadav">
+  <meta name="keywords" content="Vineet Yadav, Full-Stack Developer, GenAI Engineer, React, Django, AWS, RAG, LLM, Python, TypeScript, Portfolio">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0c0c" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:alt" content="Vineet Yadav — Full-Stack & GenAI Developer">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Vineet Yadav">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  <meta name="twitter:creator" content="@vineetyadav8588">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Security / Privacy -->
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Content-Security-Policy (meta variant — browser-enforced on all hosts, incl. GitHub Pages).
+       'unsafe-inline' is required for the inline theme script and Astro's React hydration scripts.
+       frame-ancestors/form-action cannot be set via meta; those live in public/_headers for hosts that support it. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; base-uri 'self'">
+
+  <!-- Structured Data (Person / Resume) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Vineet Yadav',
+    url: canonicalURL,
+    image: ogImage,
+    jobTitle: 'Full-Stack & GenAI Developer',
+    description: description,
+    email: 'mailto:vineetyadav8588@gmail.com',
+    sameAs: [
+      'https://github.com/vineet8588',
+      'https://linkedin.com/in/vineetyadav8588'
+    ],
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'UIET, Panjab University'
+    },
+    knowsAbout: ['React', 'Django', 'AWS', 'GenAI', 'RAG', 'LLM', 'Python', 'TypeScript']
+  })} />
 
   <script is:inline>
     const theme = (() => {
