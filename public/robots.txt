@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vineet8588.github.io/sitemap-index.xml

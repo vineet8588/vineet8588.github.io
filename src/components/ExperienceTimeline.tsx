@@ -55,7 +55,7 @@ export default function ExperienceTimeline() {
         {experienceEntries.map((entry, index) => (
           <div key={index} className="relative pl-8 md:pl-12 border-l-2 border-zinc-200 dark:border-zinc-800 pb-12 last:pb-0">
             {/* Timeline Dot */}
-            <div className="absolute -left-3.5 top-4 w-4 h-4 rounded-full border-2 border-emerald-500 bg-background z-10" />
+            <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-emerald-500 bg-background z-10" />
 
             {/* Date */}
             <div className="text-sm font-mono text-muted-foreground mb-2">
