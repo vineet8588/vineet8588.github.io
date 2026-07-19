@@ -1,4 +1,5 @@
-import { ExternalLink, GitGraph } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
 interface Project {
   title: string;
@@ -8,50 +9,37 @@ interface Project {
   liveUrl: string;
   imagePlaceholder: boolean;
 }
-
+// Do not deleted commented projects, as they might be used in the future.
 const projects: Project[] = [
+  // {
+  //   title: 'Face Recognition Entry System',
+  //   description: 'A Python face recognition entry system with a Tkinter UI and CSV data export. Captures, registers, and verifies personnel at the door using OpenCV and the face_recognition library.',
+  //   techStack: ['Python', 'OpenCV', 'Face Recognition', 'Tkinter', 'Pandas'],
+  //   githubUrl: 'https://github.com/vineet8588',
+  //   liveUrl: '#',
+  //   imagePlaceholder: true
+  // },
+  // {
+  //   title: 'LMSUIET',
+  //   description: 'A web platform to manage courses and lecture videos online. ReactJS frontend with Firebase handling authentication and backend, plus Redux for state management.',
+  //   techStack: ['ReactJS', 'Firebase', 'Redux', 'Bootstrap', 'CSS'],
+  //   githubUrl: 'https://github.com/vineet8588',
+  //   liveUrl: '#',
+  //   imagePlaceholder: true
+  // }
   {
-    title: 'RAG-Powered Customer Support Bot',
-    description: 'Built a Retrieval-Augmented Generation system that reduced customer support ticket volume by 35% while improving response accuracy to 94%. The system integrates with existing knowledge bases and provides real-time support for enterprise clients.',
-    techStack: ['React', 'Node.js', 'LangChain', 'OpenAI', 'Pinecone'],
-    githubUrl: 'https://github.com/portfolio/rag-support-bot',
-    liveUrl: 'https://rag-support.example.com',
-    imagePlaceholder: true
-  },
-  {
-    title: 'Serverless E-commerce Platform',
-    description: 'Architected a fully serverless e-commerce platform on AWS that handles 10K+ concurrent users with 99.9% uptime. Implemented cost optimization strategies that reduced monthly AWS spend by 45% through Lambda and S3 integration.',
-    techStack: ['React', 'Node.js', 'AWS Lambda', 'S3', 'DynamoDB', 'API Gateway'],
-    githubUrl: 'https://github.com/portfolio/serverless-ecommerce',
-    liveUrl: 'https://ecommerce.example.com',
-    imagePlaceholder: true
-  },
-  {
-    title: 'LLM-Powered Code Assistant',
-    description: 'Developed an AI coding assistant that analyzes codebases and provides contextual code suggestions. Reduced development time by 28% for engineering teams by providing intelligent autocomplete and debugging assistance.',
-    techStack: ['Python', 'FastAPI', 'OpenAI API', 'ChromaDB', 'VS Code Extension'],
-    githubUrl: 'https://github.com/portfolio/code-assistant',
-    liveUrl: 'https://code-assistant.example.com',
-    imagePlaceholder: true
-  },
-  {
-    title: 'Real-time Analytics Dashboard',
-    description: 'Built a real-time analytics dashboard for monitoring microservices health across distributed systems. The platform aggregates metrics from 50+ services and provides actionable insights through custom visualizations.',
-    techStack: ['Astro', 'React', 'TypeScript', 'WebSocket', 'Redis', 'Grafana'],
-    githubUrl: 'https://github.com/portfolio/analytics-dashboard',
-    liveUrl: 'https://analytics.example.com',
-    imagePlaceholder: true
+    title: 'Will Be Updated',
+    description: 'A placeholder for projects , will add when I get time. This section will showcase upcoming work and contributions.',
+    techStack: ['Tech 1', 'Tech 2', 'Tech 3', 'Tech 4'],
+    githubUrl: 'https://github.com/vineet8588',
+    liveUrl: 'https://vineetyadav.vercel.app/',
+    imagePlaceholder: false
   }
 ];
 
 export default function FeaturedProjects() {
   return (
     <section className="space-y-8">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Featured Architecture & Projects</h2>
-      <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl font-mono text-sm sm:text-base">
-        Production systems that scale and solve real business problems
-      </p>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
           <div 
@@ -59,7 +47,9 @@ export default function FeaturedProjects() {
             className="group relative overflow-hidden bg-card border border-border rounded-xl shadow-lg transition-transform duration-300 hover:-translate-y-2"
           >
             {/* Image Placeholder */}
-            <div className="aspect-video bg-zinc-200 dark:bg-zinc-800 rounded-t-lg" />
+            {project.imagePlaceholder && (
+              <div className="aspect-video bg-zinc-200 dark:bg-zinc-800 rounded-t-lg" />
+            )}
             
             {/* Card Content */}
             <div className="p-6">
@@ -95,7 +85,7 @@ export default function FeaturedProjects() {
                   className="p-2 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground transition-all duration-200"
                   aria-label="View GitHub Repository"
                 >
-                  <GitGraph className="w-4 h-4" />
+                  <FaGithub className="w-4 h-4" />
                 </a>
                 <a
                   href={project.liveUrl}

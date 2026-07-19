@@ -1,21 +1,55 @@
 import asciiArt from '../assets/ascii.txt?raw';
 
-interface TerminalHeroProps {
-  asciiText: string;
+interface InfoRow {
+  label: string;
+  value: string;
 }
 
-export default function TerminalHero({ asciiText }: TerminalHeroProps) {
-  // Neofetch-style terminal info
-  const terminalData = [
-    { label: 'Role:', value: 'Full Stack GenAI Engineer' },
-    { label: 'Location:', value: 'Remote / Earth' },
-    { label: 'Clearance:', value: 'Ready to build' },
-    { label: 'Focus:', value: 'Scalable architectures & LLM integrations' }
-  ];
+interface InfoGroup {
+  title: string;
+  rows: InfoRow[];
+}
 
+const infoGroups: InfoGroup[] = [
+  {
+    title: "vineet@portfolio",
+    rows: [
+      { label: "User", value: "Vineet Yadav" },
+      { label: "Role", value: "Full-Stack / GenAI / AWS" },
+      { label: "Uptime", value: "~4 Years" },
+      { label: "Location", value: "Gurgaon, IN" },
+      { label: "Education", value: "B.E. CSE, UIET Panjab University" },
+    ],
+  },
+  {
+    title: "Languages",
+    rows: [
+      { label: "Programming", value: "Python, JavaScript, HTML, CSS, SQL" },
+    ],
+  },
+  {
+    title: "Stack",
+    rows: [
+      { label: "Frameworks", value: "CRA, Node.js, Flask, Next.js, Django REST" },
+      { label: "Tools", value: "Git, Docker, AWS, VS Code" },
+      { label: "GenAI", value: "RAG, Vector DBs, Prompt Eng, DSPy, Chonkie" },
+      { label: "AWS", value: "ECS, API GW, CloudFront, Lambda, CodeBuild" },
+    ],
+  },
+  {
+    title: "Contact",
+    rows: [
+      { label: "Email", value: "vineetyadav8588@gmail.com" },
+      { label: "Phone", value: "+91 9720037313" },
+      { label: "LinkedIn", value: "linkedin.com/in/vineetyadav8588" },
+      { label: "GitHub", value: "github.com/vineet8588" },
+    ],
+  },
+];
+
+export default function TerminalHero({ asciiText }: { asciiText: string }) {
   return (
     <section className="relative mb-12">
-      {/* Glow wrapper — entire terminal with subtle emerald glow */}
       <div className="shadow-2xl shadow-emerald-500/10 dark:shadow-emerald-900/20 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden">
         {/* Terminal Header */}
         <div className="relative overflow-hidden rounded-t-lg bg-zinc-950/80 dark:bg-zinc-900 border-b border-zinc-800">
@@ -24,40 +58,57 @@ export default function TerminalHero({ asciiText }: TerminalHeroProps) {
             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             <span className="ml-auto text-xs text-zinc-400 font-mono">
-              Portfolio Terminal
+              vineet@portfolio: ~
             </span>
           </div>
         </div>
 
         {/* Terminal Content */}
         <div className="relative overflow-hidden rounded-b-lg bg-zinc-950/95 dark:bg-zinc-900/95">
-          <div className="relative h-full">
-            <div className="absolute inset-0 bg-black/10 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            <div className="grid grid-cols-[38%_1fr] gap-6 py-8 px-10">
-              {/* ASCII Art Side */}
-              <div className="flex items-start space-x-3 overflow-hidden no-scrollbar">
-                <div className="w-0.5 shrink-0 bg-emerald-500 dark:bg-emerald-400/50"></div>
-                <pre className="font-mono text-[7px] leading-[1.05] text-zinc-400 dark:text-zinc-300 whitespace-pre m-0 p-0 overflow-hidden">
-{asciiText}
-                </pre>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)] gap-8 lg:gap-16 py-8 px-6 sm:px-10 items-center">
+            {/* ASCII Art Side */}
+            <pre className="font-mono text-amber-200/90 dark:text-yellow-100/90 text-[7px] leading-[1.0] whitespace-pre m-0 p-0 -mt-8 select-none hidden lg:block">
+              {asciiText}
+            </pre>
 
-              {/* Data Side */}
-              <div className="space-y-4">
-                {terminalData.map(({ label, value }, index) => (
-                  <div key={index} className="flex items-start space-x-2">
-                    <span className="flex items-center space-x-1 text-sm">
-                      <span className="w-4 h-0.5 bg-amber-500 dark:bg-amber-400"></span>
-                      <span className="text-orange-400 dark:text-orange-300 font-mono">{label}</span>
-                      <span className="w-0.5 h-0.5 mx-1 bg-zinc-500 dark:bg-zinc-400 rounded-full"></span>
-                      <span className="text-emerald-400 dark:text-emerald-300 font-mono">{value}</span>
-                    </span>
-                    <div className="ml-3 space-y-0.5 w-0.5 bg-zinc-500 dark:bg-zinc-400">
-                      {index < terminalData.length - 1 && <div className="h-1 bg-zinc-500 dark:bg-zinc-400" />}
-                    </div>
+            {/* Info Side */}
+            <div className="font-mono text-[13px] leading-relaxed text-zinc-300 min-w-0">
+              {infoGroups.map((group) => (
+                <div key={group.title} className="mb-4 last:mb-0">
+                  <div className="text-emerald-400 dark:text-emerald-300 font-semibold">
+                    <span className="text-zinc-500">┌─[</span>
+                    {group.title}
+                    <span className="text-zinc-500">]</span>
                   </div>
-                ))}
+                  {group.rows.map((row) => (
+                    <div key={row.label} className="flex gap-2 py-[1px]">
+                      <span className="shrink-0 text-orange-400 dark:text-orange-300 w-28 sm:w-32">
+                        {row.label}
+                      </span>
+                      <span className="text-zinc-500">:</span>
+                      <span className="text-emerald-300 dark:text-emerald-200 break-words">
+                        {row.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <div className="text-zinc-500 text-xs mt-2 space-y-1">
+                <div>
+                  <span className="text-emerald-400">➜</span> ~{" "}
+                  <span className="text-zinc-500">cat intro.txt</span>
+                </div>
+                <div className="text-zinc-400 leading-relaxed">
+                  Full-Stack &amp; GenAI dev — React, Django, AWS. Secure
+                  deployments &amp; end-to-end automation at scale.
+                </div>
+                <div className="pt-1">
+                  <span className="text-emerald-400">➜</span> ~{" "}
+                  <span className="text-zinc-500">echo $STATUS</span>{" "}
+                  <span className="text-emerald-300">"open to work"</span>
+                </div>
               </div>
             </div>
           </div>

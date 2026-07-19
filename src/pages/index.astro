@@ -14,10 +14,10 @@ import ContactFooter from '../components/ContactFooter.tsx';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Developer Portfolio</title>
-  <meta name="description" content="A premium full-stack developer portfolio showcasing cutting-edge architecture and AI-powered solutions.">
-  <meta property="og:title" content="Full Stack Developer Portfolio">
-  <meta property="og:description" content="Engineer-grade portfolio with AI integrations and scalable architectures.">
+  <title>Vineet Yadav — Full-Stack & GenAI Developer</title>
+  <meta name="description" content="Full-Stack and GenAI Developer proficient in React, Django, and AWS. End-to-end automation, secure deployments, and LLM integrations.">
+  <meta property="og:title" content="Vineet Yadav — Full-Stack & GenAI Developer">
+  <meta property="og:description" content="Full-Stack and GenAI Developer proficient in React, Django, and AWS infrastructure.">
   <meta property="og:image" content="https://example.com/portfolio-og.png">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -48,19 +48,61 @@ import ContactFooter from '../components/ContactFooter.tsx';
       <TerminalHero asciiText={asciiArt} client:load />
     </section>
 
+    <section id="about" class="space-y-6">
+      <h2 class="text-3xl font-bold tracking-tight">About</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div class="md:col-span-2 space-y-4 text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          <p>
+            Highly adaptable Full-Stack and GenAI Developer proficient in React, Django,
+            and robust AWS infrastructure. Combines a proven track record of driving
+            end-to-end automation features and secure deployments with the ability to
+            rapidly master new technologies.
+          </p>
+          <p>
+            Currently a Security Engineer 2 at Deloitte USI, engineering
+            code-vulnerability detection and automated patch remediation. Aspiring to
+            engineer and lead large-scale software projects.
+          </p>
+        </div>
+        <div class="space-y-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+          <div>
+            <div class="text-xs uppercase tracking-wide text-zinc-500">Education</div>
+            <div class="font-medium text-zinc-800 dark:text-zinc-100">B.E. Computer Science</div>
+            <div class="text-sm text-zinc-500">UIET, Panjab University · CGPA 8.32</div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-wide text-zinc-500">Certifications</div>
+            <ul class="text-sm text-zinc-600 dark:text-zinc-300 list-disc list-inside space-y-1">
+              <li>
+                <a href="https://verify.openedg.org/?id=Nx2U.3Y3u.LupQ" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">PCAP — Python Programming</a>
+              </li>
+              <li>
+                <a href="https://www.coursera.org/account/accomplishments/verify/FLCJVNLF9XNY" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Coursera — React</a>
+                <span class="text-zinc-400"> / </span>
+                <a href="https://coursera.org/verify/ZRZ3VB9S9TCS" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Bootstrap 4</a>
+              </li>
+              <li>
+                <a href="https://www.mygreatlearning.com/certificate/OHFNOZTP" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Great Learning — GenAI</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="skills" class="space-y-8">
       <h2 class="text-3xl font-bold tracking-tight">Technical Arsenal</h2>
       <SkillsMatrix client:visible />
     </section>
 
-    <section id="projects" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Featured Architecture & Projects</h2>
-      <FeaturedProjects client:visible />
-    </section>
-
     <section id="experience" class="space-y-8">
       <h2 class="text-3xl font-bold tracking-tight">Command History (Experience)</h2>
       <ExperienceTimeline client:visible />
+    </section>
+
+    <section id="projects" class="space-y-8">
+      <h2 class="text-3xl font-bold tracking-tight">Featured Architecture and Projects</h2>
+      <FeaturedProjects client:visible />
     </section>
 
     <section id="contact" class="space-y-8">
