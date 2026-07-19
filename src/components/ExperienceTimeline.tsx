@@ -7,42 +7,43 @@ interface ExperienceEntry {
 
 const experienceEntries: ExperienceEntry[] = [
   {
-    date: '2023 - Present',
-    role: 'Senior Full Stack Engineer',
-    company: 'TechCorp',
+    date: 'Jun 2026 - Present',
+    role: 'Solution Advisor (Security Engineer 2)',
+    company: 'Deloitte USI',
     bulletPoints: [
-      'Architected AWS serverless backend reducing infrastructure costs by 40% through Lambda and S3 optimization',
-      'Integrated LLM-based chatbot improving customer retention by 15% using LangChain and Pinecone',
-      'Optimized CI/CD pipeline with GitHub Actions reducing deployment time by 60%',
-      'Implemented TypeScript type safety across 200k+ lines of codebase',
-      'Built real-time analytics dashboard with WebSocket integration for 50+ microservices',
-      'Upgraded legacy monolith to microservices architecture improving scalability',
+      'Follow Agentic SDLC methodologies as a software developer.',
+      'Leverage AI-assisted coding tools (Claude Code, GitHub Copilot) to build and enhance diverse software applications.',
+      'Engineer code vulnerability detection and automated patch remediation, integrating external security scan data.',
     ]
   },
   {
-    date: '2021 - 2023',
-    role: 'Full Stack Engineer',
-    company: 'CodeFlow Inc',
+    date: 'Jun 2024 - Jun 2026',
+    role: 'Advisory Associate Solution Advisor',
+    company: 'Deloitte USI',
     bulletPoints: [
-      'Developed RAG-based customer support system handling 10K+ daily queries with 94% accuracy',
-      'Built GraphQL API gateway connecting frontend with backend services',
-      'Implemented Kubernetes cluster for container orchestration reducing deployment failures',
-      'Created internal design system with Tailwind CSS components used by 15 teams',
-      'Optimized React app performance bringing Lighthouse score from 68 to 92',
-      'Migrated monolithic backend to serverless architecture on AWS',
+      'Operated as a Full-Stack Developer specializing in Generative AI (GenAI) automation use cases.',
+      'Built an end-to-end OT Security Automation feature using GenAI, Prompt Engineering, RAG, Vector Databases, and DSPy.',
+      'Improved a context-based RAG chatbot response accuracy via advanced text chunking strategies using Chonkie.',
     ]
   },
   {
-    date: '2019 - 2021',
-    role: 'Full Stack Developer',
-    company: 'InnovateTech',
+    date: 'Aug 2022 - May 2024',
+    role: 'Advisory Analyst',
+    company: 'Deloitte USI',
     bulletPoints: [
-      'Built first full-stack portfolio website using React and Node.js',
-      'Developed cloud-based file storage system using S3 and AWS SDK',
-      'Created CI/CD pipeline for automated deployment to AWS EC2',
-      'Implemented URL shortening service using MongoDB and Express.js',
-      'Developed real-time chat application with Socket.IO',
-      'Optimized mobile responsiveness for cross-device compatibility',
+      'Developed the React frontend for an automation product using Shadcn, Tailwind, Tanstack, Material UI, React Router, React Query, Axios, Vite, React Hook Form.',
+      'Architected scalable backend solutions and RESTful APIs with Django REST Framework, integrating SAP, ServiceNow, and HPALM.',
+      'Deployed web apps and microservices on AWS (CodeBuild, ALB, ECS, API Gateway, CloudFront, CloudWatch, Lambda), reducing hosting costs.',
+      'Containerized automated server-side apps and microservices with Docker, Celery, Express.js, and Puppeteer.',
+    ]
+  },
+  {
+    date: 'Feb 2021 - Apr 2021',
+    role: 'Frontend Developer (Intern)',
+    company: 'BGUS Australia',
+    bulletPoints: [
+      'Worked as a React Developer building a production website with Next.js and Chakra UI.',
+      'Contributed to increased client acquisition for the business.',
     ]
   }
 ];
@@ -50,11 +51,6 @@ const experienceEntries: ExperienceEntry[] = [
 export default function ExperienceTimeline() {
   return (
     <section className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Command History (Experience)</h2>
-      <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl font-mono text-sm sm:text-base">
-        Professional journey from startup to senior engineering roles
-      </p>
-
       <div className="space-y-8">
         {experienceEntries.map((entry, index) => (
           <div key={index} className="relative pl-8 md:pl-12 border-l-2 border-zinc-200 dark:border-zinc-800 pb-12 last:pb-0">

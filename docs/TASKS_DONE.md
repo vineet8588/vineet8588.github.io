@@ -46,7 +46,7 @@ This file records all tasks from the project todo list that have been **complete
 - [x] **Build ContactFooter.tsx component**
   - Centered CTA "Ready to build something impactful?" with glowing "Let's Talk" mailto button.
   - Footer with **GitHub / LinkedIn / Twitter** Lucide icon links.
-  - Footer note: "Built with Astro & React. No Next.js harmed in the making."
+  - Footer note: "Built with Astro & React."
 
 - [x] **Create index.astro page**
   - Imports `global.css` + `ascii.txt?raw`, assembles all sections.
@@ -88,8 +88,33 @@ This file records all tasks from the project todo list that have been **complete
   - Root cause: `background-color: oklch(0.985 0.005 240)` (near-white) was set on the base `body` rule; the `.dark body` rule only overrode `background-image`, not `background-color`, so dark mode still painted near-white underneath.
   - Fix: added `background-color: oklch(0.08 0 0)` + dark grid to the `.dark body` rule. Verified compiled CSS: `.dark body{background-color:oklch(8% 0 0);...}`.
 
+- [x] **Improve light-mode colors (warm, visible grid)**
+  - Removed bluish tinge: background changed from hue `240` (blue) to warm `oklch(0.98 0.012 85)` (cream/paper).
+  - Grid was invisible (4% opacity) → bumped to `18%` (`oklch(0.72 0.02 85 / 0.18)`), same warm hue, now clearly visible 40px grid.
+  - Kept emerald/crimson radial glows per spec. `background-attachment: fixed`.
+
+- [x] **Fix ASCII art cropping on the right**
+  - Root cause: ASCII (100 chars wide) sat in a fixed `38%` grid column with `overflow-hidden`; at `text-[7px]` it was wider than the column → right side clipped.
+  - Fix: responsive grid `grid-cols-1 lg:grid-cols-[minmax(0,1fr)_1fr]` (stacked on small, side-by-side on large), removed `overflow-hidden`, `<pre>` is `whitespace-pre w-max` so it shows full natural width. `no-scrollbar` + `overflow-x-auto` as safety net.
+
+- [x] **Remove green divider line next to ASCII art**
+  - Deleted the decorative `w-0.5 bg-emerald-500` vertical bar that appeared to the left of the ASCII art.
+
+- [x] **Filled all portfolio sections from INFO.md**
+  - Source: root `INFO.md` (Vineet Yadav's resume).
+  - **TerminalHero**: real name, role, location (Gurgaon), education, languages, frameworks/tools/GenAI/cloud stack, and contact (email/phone/linkedin/github) with phone added from INFO.md.
+  - **SkillsMatrix**: rebuilt 6 categories from INFO.md — Languages, Frameworks, Developer Tools, Libraries, AI/ML, Cloud/AWS.
+  - **ExperienceTimeline**: replaced dummy data with Deloitte USI (3 roles: Security Engineer 2, Advisory Associate, Advisory Analyst) + BGUS Australia internship, using real bullets.
+  - **FeaturedProjects**: replaced dummy projects with real ones — OT Security Automation (GenAI), Context-Based RAG Chatbot, Face Recognition Entry System, LMSUIET.
+  - **ContactFooter**: real links — `github.com/vineet8588`, `linkedin.com/in/vineetyadav8588`, `mailto:vineetyadav8588@gmail.com`.
+  - **index.astro**: updated `<title>`, meta description, OG tags to real name/role.
+  - **Navbar**: role subtitle updated to "Full-Stack / GenAI Engineer".
+  - Gaps (no per-project URLs, no Education/Awards section yet) logged to TASKS_PENDING.md.
+
 ## Verification
 - `npm run build` passes; CSS generated (`_astro/index.*.css`) and linked.
 - Dev server serves CSS + hydrated React islands.
 - All 6 components render per AGENTS.md spec.
-- ASCII art renders without scrollbars; chips readable in both themes; light mode has gradient + grid.
+- ASCII art renders full-width, no scrollbar, no green line.
+- Dark mode: deep zinc + emerald/crimson glow + grid. Light mode: warm cream + visible warm grid + glow. Chips readable in both themes.
+- All visible copy now sourced from INFO.md.

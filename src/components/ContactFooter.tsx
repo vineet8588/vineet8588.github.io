@@ -1,9 +1,10 @@
-import { Mail, GitGraph, Send, AtSign } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const SOCIAL_LINKS = [
-  { href: 'https://github.com/yourusername', label: 'GitHub', Icon: GitGraph },
-  { href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn', Icon: Send },
-  { href: 'https://twitter.com/yourusername', label: 'Twitter', Icon: AtSign }
+  { href: 'https://github.com/vineet8588', label: 'GitHub', Icon: FaGithub },
+  { href: 'https://linkedin.com/in/vineetyadav8588', label: 'LinkedIn', Icon: FaLinkedinIn },
+  { href: 'mailto:vineetyadav8588@gmail.com', label: 'Email', Icon: Mail }
 ];
 
 export default function ContactFooter() {
@@ -19,7 +20,7 @@ export default function ContactFooter() {
             Let's create scalable systems and innovative solutions that drive real business value together
           </p>
           <a
-            href="mailto:you@example.com"
+            href="mailto:vineetyadav8588@gmail.com"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium font-mono
                        bg-emerald text-emerald-foreground rounded-lg hover:bg-emerald-glow
                        hover:shadow-[0_0_20px_oklch(0.65_0.2_155/0.4)] transition-all duration-300
@@ -49,7 +50,7 @@ export default function ContactFooter() {
         </div>
 
         <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-4 font-mono">
-          Built with Astro & React. No Next.js harmed in the making.
+          Built with Astro & React.
         </p>
       </div>
     </footer>

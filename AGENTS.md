@@ -14,7 +14,7 @@
 *   **UI Library:** React.
 *   **Styling:** Tailwind CSS.
 *   **Components:** shadcn/ui.
-*   **CRITICAL DIRECTIVE:** YOU MUST NOT USE NEXT.JS OR NEXT/LINK/IMAGE. This is an Astro project. All routing and server-rendered layouts must use `.astro` files. All interactive UI elements must use `.tsx` files.
+*   **CRITICAL DIRECTIVE:** This is an Astro project. All routing and server-rendered layouts must use `.astro` files. All interactive UI elements must use `.tsx` files.
 *   **Performance:** Optimize for a 100 Lighthouse score. Use Astro's `client:visible` for below-the-fold React components to defer hydration.
 
 ## 2. Initialization & Configuration
@@ -95,7 +95,7 @@
 ### F. `ContactFooter.tsx`
 *   **Layout:** A wide, centered CTA section followed by a standard footer.
 *   **CTA:** Large text: "Ready to build something impactful?". A glowing primary button: `Let's Talk` (mailto link).
-*   **Footer:** Flex container with Lucide icons (GitHub, LinkedIn, Twitter). Include a small note: `Built with Astro & React. No Next.js harmed in the making.`
+*   **Footer:** Flex container with Lucide icons (GitHub, LinkedIn, Twitter). Include a small note: `Built with Astro & React`
 
 ## 5. Page Assembly (`src/pages/index.astro`)
 *   **Structure:**

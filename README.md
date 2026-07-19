@@ -100,7 +100,7 @@ npm run preview
 - CTA section: "Ready to build something impactful?"
 - Glowing `Let's Talk` mailto button
 - Social links (GitHub, LinkedIn, Twitter)
-- Footer note: "Built with Astro & React. No Next.js harmed in the making."
+- Footer note: "Built with Astro & React."
 
 ## Customization
 
@@ -125,7 +125,7 @@ npm run preview
 ## Performance Notes
 - `client:load` for above-the-fold (Navbar, TerminalHero)
 - `client:visible` for below-the-fold (Skills, Projects, Experience, Footer)
-- No Next.js - pure Astro + React islands architecture
+- Pure Astro + React islands architecture
 
 ## Build Status
 - ✅ Production build passes (`npm run build`)

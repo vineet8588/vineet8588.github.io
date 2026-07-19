@@ -10,43 +10,65 @@ interface SkillsCategory {
 
 const categories: SkillsCategory[] = [
   {
-    title: 'Frontend',
+    title: 'Languages',
     subcategories: [
-      { label: 'React', colorVariant: 'emerald' },
-      { label: 'TypeScript', colorVariant: 'emerald' },
-      { label: 'Tailwind CSS', colorVariant: 'emerald' },
-      { label: 'HTML/CSS', colorVariant: 'emerald' },
-      { label: 'JavaScript', colorVariant: 'emerald' }
-    ]
-  },
-  {
-    title: 'Backend',
-    subcategories: [
-      { label: 'Node.js', colorVariant: 'emerald' },
-      { label: 'TypeScript', colorVariant: 'emerald' },
       { label: 'Python', colorVariant: 'emerald' },
-      { label: 'GraphQL', colorVariant: 'emerald' },
-      { label: 'REST APIs', colorVariant: 'emerald' }
+      { label: 'JavaScript', colorVariant: 'emerald' },
+      { label: 'HTML', colorVariant: 'emerald' },
+      { label: 'CSS', colorVariant: 'emerald' },
+      { label: 'SQL', colorVariant: 'emerald' }
     ]
   },
   {
-    title: 'Cloud / AWS',
+    title: 'Frameworks',
     subcategories: [
-      { label: 'AWS EC2', colorVariant: 'emerald' },
-      { label: 'AWS Lambda', colorVariant: 'emerald' },
-      { label: 'S3', colorVariant: 'emerald' },
-      { label: 'ECR', colorVariant: 'emerald' },
-      { label: 'CloudFormation', colorVariant: 'emerald' }
+      { label: 'CRA', colorVariant: 'blue' },
+      { label: 'Node.js', colorVariant: 'blue' },
+      { label: 'Flask', colorVariant: 'blue' },
+      { label: 'Next.js', colorVariant: 'blue' },
+      { label: 'Django REST', colorVariant: 'blue' }
+    ]
+  },
+  {
+    title: 'Developer Tools',
+    subcategories: [
+      { label: 'Git', colorVariant: 'violet' },
+      { label: 'Docker', colorVariant: 'violet' },
+      { label: 'AWS', colorVariant: 'violet' },
+      { label: 'VS Code', colorVariant: 'violet' }
+    ]
+  },
+  {
+    title: 'Libraries',
+    subcategories: [
+      { label: 'React', colorVariant: 'red' },
+      { label: 'djangorestframework', colorVariant: 'red' },
+      { label: 'react-router', colorVariant: 'red' },
+      { label: 'axios', colorVariant: 'red' },
+      { label: 'mui', colorVariant: 'red' },
+      { label: 'flask', colorVariant: 'red' },
+      { label: 'puppeteer', colorVariant: 'red' }
     ]
   },
   {
     title: 'AI / ML',
     subcategories: [
-      { label: 'LangChain', colorVariant: 'emerald' },
-      { label: 'OpenAI API', colorVariant: 'emerald' },
-      { label: 'Vector DBs', colorVariant: 'emerald' },
-      { label: 'LLM Integration', colorVariant: 'emerald' },
-      { label: 'Prompt Engineering', colorVariant: 'emerald' }
+      { label: 'RAG', colorVariant: 'emerald' },
+      { label: 'Vector Databases', colorVariant: 'emerald' },
+      { label: 'Prompt Engineering', colorVariant: 'emerald' },
+      { label: 'DSPy', colorVariant: 'emerald' },
+      { label: 'Chonkie', colorVariant: 'emerald' }
+    ]
+  },
+  {
+    title: 'Cloud / AWS',
+    subcategories: [
+      { label: 'ECS', colorVariant: 'blue' },
+      { label: 'API Gateway', colorVariant: 'blue' },
+      { label: 'CloudFront', colorVariant: 'blue' },
+      { label: 'Lambda', colorVariant: 'blue' },
+      { label: 'CodeBuild', colorVariant: 'blue' },
+      { label: 'ALB', colorVariant: 'blue' }
     ]
   }
 ];
@@ -61,22 +83,17 @@ const tagVariants = {
 export default function SkillsMatrix() {
   return (
     <section className="space-y-8">
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Technical Arsenal</h2>
-      <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl font-mono text-sm sm:text-base">
-        Tools and technologies that power my architecture
-      </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {categories.map(category => (
           <div 
             key={category.title} 
-            className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg hover:border-emerald-500 transition-colors shadow-sm"
+            className="h-full flex flex-col bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg hover:border-emerald-500 transition-colors shadow-sm"
           >
             <h3 className="text-zinc-800 dark:text-zinc-200 font-bold mb-4 uppercase tracking-wide text-xs">
               {category.title}
             </h3>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 space-y-2">
+            <div className="flex flex-wrap gap-2 content-start">
               {category.subcategories.map(({ label, colorVariant }) => {
                 const variantClass = tagVariants[colorVariant] || tagVariants.emerald;
                 return (
