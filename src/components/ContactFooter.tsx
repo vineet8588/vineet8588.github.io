@@ -9,21 +9,21 @@ const SOCIAL_LINKS = [
 
 export default function ContactFooter() {
   return (
-    <footer className="bg-zinc-950 dark:bg-zinc-900 border-t border-zinc-800 dark:border-zinc-900">
+    <footer className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
       {/* CTA Section */}
       <div className="py-24 sm:py-32">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white mb-6">
             Ready to build something impactful?
           </h2>
-          <p className="text-lg text-zinc-200 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8 max-w-3xl mx-auto">
             Let's create scalable systems and innovative solutions that drive real business value together
           </p>
           <a
             href="mailto:vineetyadav8588@gmail.com"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium font-mono
                        bg-emerald text-emerald-foreground rounded-lg hover:bg-emerald-glow
-                       hover:shadow-[0_0_20px_oklch(0.65_0.2_155/0.4)] transition-all duration-300
+                       animate-cta-glow transition-colors duration-300
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald/50"
           >
             <Mail className="w-4 h-4" />

@@ -16,6 +16,17 @@ This file records tasks from the project todo list that are **not yet done** or 
 - [ ] **GitHub Pages ignores `_headers`**
   - The full-strength security headers in `public/_headers` only apply on Netlify/Cloudflare. On the current GitHub Pages host, only the meta CSP in `index.astro` is enforced. If migrating hosts, `_headers` activates automatically.
 
+- [x] **Animations — medium-impact (done)** ✅
+   - [x] **CTA pulsing glow** — `animate-cta-glow` + `cta-glow` keyframe on "Let's Talk" button (ContactFooter.tsx).
+   - [x] **Timeline current-job pulse** — `animate-pulse-ring` + `pulse-ring` keyframe on the "Present" (first) timeline dot (ExperienceTimeline.tsx).
+   - [x] **Nav scroll-spy highlight** — `IntersectionObserver` tracks active section; matching nav link highlighted emerald in desktop + mobile (Navbar.tsx).
+   - All honor `prefers-reduced-motion` (added to the reduced-motion guard + scroll-spy observer skipped under reduced motion). `astro check` 0/0/0, eslint clean, build passes.
+
+- [x] **Animations — subtle micro-interactions (done)** ✅
+   - [x] **Card hover glow** — emerald border + glow shadow on project card hover (FeaturedProjects.tsx), matching the skill-card hover glow.
+   - [x] **Animated scan-line** — faint emerald scan-line sweeps the terminal hero via `animate-scanline` (`scanline` keyframe, TerminalHero.tsx).
+   - Both honor `prefers-reduced-motion` (scanline disabled in reduced-motion guard; glow is a static shadow). `astro check` 0/0/0, eslint clean, build passes.
+
 ## Resolved (moved to TASKS_DONE.md)
 - [x] Initial project init, config, assets, all 6 components built per spec.
 - [x] ThemeToggle functional; TerminalHero glow + ASCII fixes (scrollbar/crop/green line); SkillsMatrix dark chip contrast.

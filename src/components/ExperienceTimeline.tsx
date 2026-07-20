@@ -50,12 +50,14 @@ const experienceEntries: ExperienceEntry[] = [
 
 export default function ExperienceTimeline() {
   return (
-    <section className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="space-y-8">
-        {experienceEntries.map((entry, index) => (
-          <div key={index} className="relative pl-8 md:pl-12 border-l-2 border-zinc-200 dark:border-zinc-800 pb-12 last:pb-0">
+    <section className="space-y-8">
+      <div>
+        {experienceEntries.map((entry, index) => {
+          const isCurrent = index === 0;
+          return (
+          <div key={index} className="relative pl-8 md:pl-12 border-l-2 border-zinc-200 dark:border-zinc-800 pb-8 sm:pb-12 last:pb-0">
             {/* Timeline Dot */}
-            <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-emerald-500 bg-background z-10" />
+            <div className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-emerald-500 bg-background z-10${isCurrent ? ' animate-pulse-ring' : ''}`} />
 
             {/* Date */}
             <div className="text-sm font-mono text-muted-foreground mb-2">
@@ -79,7 +81,8 @@ export default function ExperienceTimeline() {
               ))}
             </ul>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

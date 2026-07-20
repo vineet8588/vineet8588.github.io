@@ -1,5 +1,6 @@
-type ColorVariant = 'emerald' | 'red' | 'blue' | 'violet';
+import { useEffect, useRef } from 'react';
 
+type ColorVariant = 'emerald' | 'red' | 'blue' | 'violet';
 interface Skill {
   label: string;
   colorVariant: ColorVariant;
@@ -89,19 +90,52 @@ const tagVariants = {
 };
 
 export default function SkillsMatrix() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const groups = Array.from(root.querySelectorAll<HTMLElement>(".stagger"));
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduce || !("IntersectionObserver" in window)) {
+      groups.forEach((g) => g.classList.add("is-visible"));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const g = entry.target as HTMLElement;
+          Array.from(g.children).forEach((child, i) => {
+            (child as HTMLElement).style.transitionDelay = `${Math.min(i * 40, 320)}ms`;
+          });
+          g.classList.add("is-visible");
+          io.unobserve(g);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    groups.forEach((g) => io.observe(g));
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section className="space-y-8">
+    <section className="space-y-8" ref={rootRef}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {categories.map(category => (
           <div 
             key={category.title} 
-            className="h-full flex flex-col bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg hover:border-emerald-500 transition-colors shadow-sm"
+            className="h-full flex flex-col bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-zinc-800 dark:text-zinc-200 font-bold mb-4 uppercase tracking-wide text-xs">
               {category.title}
             </h3>
             
-            <div className="flex flex-wrap gap-2 content-start">
+            <div className="flex flex-wrap gap-2 content-start stagger">
               {category.subcategories.map(({ label, colorVariant }) => {
                 const variantClass = tagVariants[colorVariant] || tagVariants.emerald;
                 return (

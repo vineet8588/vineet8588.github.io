@@ -66,7 +66,7 @@ const ogImage = new URL('/profile.jpg', Astro.site);
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; base-uri 'self'">
 
   <!-- Structured Data (Person / Resume) -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Vineet Yadav',
@@ -108,13 +108,13 @@ const ogImage = new URL('/profile.jpg', Astro.site);
 <body class="text-slate-900 dark:text-zinc-100 min-h-screen font-sans antialiased selection:bg-emerald-500/30">
   <Navbar client:load />
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 space-y-24">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16 space-y-14 sm:space-y-16">
     <section id="hero">
       <TerminalHero asciiText={asciiArt} client:load />
     </section>
 
-    <section id="about" class="space-y-6">
-      <h2 class="text-3xl font-bold tracking-tight">About</h2>
+    <section id="about" class="space-y-8 reveal">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">About</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         <div class="md:col-span-2 space-y-4 text-zinc-700 dark:text-zinc-300 leading-relaxed">
           <p>
@@ -139,15 +139,15 @@ const ogImage = new URL('/profile.jpg', Astro.site);
             <div class="text-xs uppercase tracking-wide text-zinc-500">Certifications</div>
             <ul class="text-sm text-zinc-600 dark:text-zinc-300 list-disc list-inside space-y-1">
               <li>
-                <a href="https://verify.openedg.org/?id=Nx2U.3Y3u.LupQ" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">PCAP — Python Programming</a>
+                <a href="https://verify.openedg.org/?id=Nx2U.3Y3u.LupQ" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors">PCAP — Python Programming</a>
               </li>
               <li>
-                <a href="https://www.coursera.org/account/accomplishments/verify/FLCJVNLF9XNY" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Coursera — React</a>
+                <a href="https://www.coursera.org/account/accomplishments/verify/FLCJVNLF9XNY" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors">Coursera — React</a>
                 <span class="text-zinc-400"> / </span>
-                <a href="https://coursera.org/verify/ZRZ3VB9S9TCS" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Bootstrap 4</a>
+                <a href="https://coursera.org/verify/ZRZ3VB9S9TCS" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors">Bootstrap 4</a>
               </li>
               <li>
-                <a href="https://www.mygreatlearning.com/certificate/OHFNOZTP" target="_blank" rel="noopener noreferrer" class="hover:text-emerald transition-colors">Great Learning — GenAI</a>
+                <a href="https://www.mygreatlearning.com/certificate/OHFNOZTP" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors">Great Learning — GenAI</a>
               </li>
             </ul>
           </div>
@@ -155,24 +155,55 @@ const ogImage = new URL('/profile.jpg', Astro.site);
       </div>
     </section>
 
-    <section id="skills" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Technical Arsenal</h2>
+    <section id="skills" class="space-y-8 reveal">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Technical Arsenal</h2>
       <SkillsMatrix client:visible />
     </section>
 
-    <section id="experience" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Command History (Experience)</h2>
+    <section id="experience" class="space-y-8 reveal">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Command History (Experience)</h2>
       <ExperienceTimeline client:visible />
     </section>
 
-    <section id="projects" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Featured Architecture and Projects</h2>
+    <section id="projects" class="space-y-8 reveal">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Featured Architecture and Projects</h2>
       <FeaturedProjects client:visible />
     </section>
 
-    <section id="contact" class="space-y-8">
+    <section id="contact" class="space-y-8 reveal">
       <ContactFooter client:visible />
     </section>
   </main>
+
+  <script is:inline>
+    (() => {
+      const els = document.querySelectorAll('.reveal, .stagger');
+      if (!els.length) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              // Stagger children by index for a cascading entrance.
+              if (el.classList.contains('stagger')) {
+                Array.from(el.children).forEach((child, i) => {
+                  child.style.transitionDelay = `${Math.min(i * 45, 400)}ms`;
+                });
+              }
+              el.classList.add('is-visible');
+              io.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
 </body>
 </html>

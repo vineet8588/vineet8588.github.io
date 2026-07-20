@@ -1,19 +1,18 @@
 # Premium Full Stack Developer Portfolio
 
-A high-performance, recruiter-optimized portfolio website built with **Astro**, **React**, **Tailwind CSS v4**, and **shadcn/ui** primitives.
+A high-performance, recruiter-optimized portfolio website built with **Astro**, **React**, and **Tailwind CSS v4**.
 
 > Personal site for **Vineet Yadav** — Full-Stack & GenAI Developer. Content is sourced from `INFO.md` (kept private / gitignored).
 
 ## Design Aesthetic
-- **Dark Mode**: Premium hacker vibe — deep zinc background, emerald greens, crimson accents, subtle grid + radial glow.
-- **Light Mode**: Warm cream paper with a visible grid and the same emerald/crimson glow.
+- **Dark Mode**: Premium hacker vibe — deep zinc background, emerald greens, subtle grid + radial glow.
+- **Light Mode**: Warm cream paper with a visible grid and emerald glow; the terminal hero uses a Solarized Light palette.
 - **Performance**: Optimized for a high Lighthouse score via deferred React hydration (`client:visible` below the fold).
 
 ## Tech Stack
 - **Framework**: Astro v7
 - **UI Library**: React 19
-- **Styling**: Tailwind CSS v4 (via `@tailwindcss/vite`)
-- **Component primitives**: shadcn/ui (under `src/components/ui/`)
+- **Styling**: Tailwind CSS v4 (via `@tailwindcss/vite`), utility-first inline classes
 - **Icons**: `lucide-react` (UI icons) + `react-icons` (brand icons: GitHub, LinkedIn)
 - **SEO**: `@astrojs/sitemap`
 - **Fonts**: JetBrains Mono + Geist (variable, via `@fontsource-variable`)
@@ -30,9 +29,7 @@ portfolio/
 │   │   ├── SkillsMatrix.tsx     # 6 skill category cards with pill tags
 │   │   ├── FeaturedProjects.tsx # Project grid (currently a placeholder card)
 │   │   ├── ExperienceTimeline.tsx # Vertical timeline, Deloitte USI + BGUS
-│   │   ├── ContactFooter.tsx    # CTA + footer (GitHub / LinkedIn / Email)
-│   │   ├── ui/                  # shadcn/ui primitives (button, card, badge, ...)
-│   │   └── lib/utils.ts         # `cn()` helper
+│   │   └── ContactFooter.tsx    # CTA + footer (GitHub / LinkedIn / Email)
 │   ├── pages/
 │   │   └── index.astro          # Page assembly, SEO meta + JSON-LD, meta CSP, About section
 │   └── styles/
