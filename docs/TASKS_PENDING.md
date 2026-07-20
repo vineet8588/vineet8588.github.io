@@ -16,6 +16,17 @@ This file records tasks from the project todo list that are **not yet done** or 
 - [ ] **GitHub Pages ignores `_headers`**
   - The full-strength security headers in `public/_headers` only apply on Netlify/Cloudflare. On the current GitHub Pages host, only the meta CSP in `index.astro` is enforced. If migrating hosts, `_headers` activates automatically.
 
+- [ ] **Animations — medium-impact (next batch)**
+  - [ ] **CTA pulsing glow** — subtle pulsing emerald glow on the "Let's Talk" button in `ContactFooter.tsx`.
+  - [ ] **Timeline current-job pulse** — soft pulsing ring on the "Present" job's timeline dot in `ExperienceTimeline.tsx`.
+  - [ ] **Nav scroll-spy highlight** — active section link highlights/underlines as you scroll (`Navbar.tsx` + IntersectionObserver on sections).
+  - Note: reusable animation infra already exists — `.reveal`, `.stagger`, `.animate-terminal-blink` keyframes + `prefers-reduced-motion` guard in `global.css`, and an IntersectionObserver pattern in `index.astro` / `SkillsMatrix.tsx`.
+
+- [ ] **Animations — subtle micro-interactions (later)**
+  - [ ] **Card hover glow** — emerald glow-shadow on project/skill card hover (beyond current border-color change).
+  - [ ] **Animated scan-line** — faint scan-line sweeping over the terminal hero.
+  - Both should honor `prefers-reduced-motion`.
+
 ## Resolved (moved to TASKS_DONE.md)
 - [x] Initial project init, config, assets, all 6 components built per spec.
 - [x] ThemeToggle functional; TerminalHero glow + ASCII fixes (scrollbar/crop/green line); SkillsMatrix dark chip contrast.
