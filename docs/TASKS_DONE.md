@@ -40,6 +40,16 @@ This file records all tasks from the project todo list that have been **complete
 - [x] **ASCII art** — responsive grid + `w-max` pre, no scrollbar, no right crop, no green divider line; hidden below `lg`.
 - [x] **SkillsMatrix dark chip contrast** — light `-300` text on subtle bg.
 - [x] **Timeline dot alignment** — `-left-[9px] top-1` centers the dot on the 2px line, level with the date row.
+- [x] **Light-mode colors for TerminalHero & ContactFooter** — added light-mode variants (dark styles preserved under `dark:`): terminal header/content bg → `zinc-100`/`zinc-50`, footer bg → `zinc-100`; text/labels/values use darker zinc/emerald/amber/orange shades from the existing palette for readable light-mode contrast. Content unchanged. `astro check` 0 errors.
+  - Follow-up: backgrounds were too grey → lightened (TerminalHero content `bg-white`, header `bg-zinc-100/70`; ContactFooter `bg-zinc-50`).
+  - Follow-up: **TerminalHero light mode → Solarized Light palette** — bg base3 `#fdf6e3` / base2 `#eee8d5`, text base00/01/1 (`#657b83`/`#586e75`/`#93a1a1`), green `#859900` (titles/prompt), orange `#cb4b16` (labels), cyan `#2aa198` (values), yellow `#b58900` (ASCII/glow). Dark mode untouched. `astro check` 0 errors.
+  - Follow-up: **ContactFooter border** — replaced top-only `border-t border-zinc-200 dark:border-zinc-900` (invisible in dark since it matched bg) with full `border border-zinc-200 dark:border-zinc-800` + `rounded-lg overflow-hidden` for a consistent card look in both modes. `astro check` 0 errors.
+- [x] **Navbar hover color in dark mode** — nav links + theme toggle used `hover:text-emerald` (dark `--emerald` token, invisible on dark navbar). Switched to site-wide convention `hover:text-emerald-400 dark:hover:text-emerald-300` (matches ContactFooter/project links/skill pills). Visible hover in both modes. `astro check` 0 errors.
+- [x] **About cert link hover color** — 4 certification links in About section used the same inconsistent `hover:text-emerald` token → updated to `hover:text-emerald-400 dark:hover:text-emerald-300`. No stray `hover:text-emerald` tokens remain site-wide. `astro check` 0 errors.
+- [x] **Navbar name color** — "Vineet Yadav" changed from `text-emerald-500 dark:text-emerald-300` to `text-zinc-900 dark:text-white` (matches site heading color). `astro check` 0 errors.
+
+### Repo hygiene (cont.)
+- [x] **Removed duplicate root assets** — deleted redundant `ascii.txt` + `profile.jpg` from project root; processed copies remain in `src/assets/ascii.txt` (whitespace-trimmed, imported via `?raw`) and `public/profile.jpg` (resized/optimized, served at `/profile.jpg`).
 
 ### Content (from INFO.md)
 - [x] **Filled all sections from INFO.md** — TerminalHero, SkillsMatrix (6 categories), ExperienceTimeline (Deloitte + BGUS), ContactFooter (real links), index.astro title/meta.
