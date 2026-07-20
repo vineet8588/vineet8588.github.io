@@ -108,13 +108,13 @@ const ogImage = new URL('/profile.jpg', Astro.site);
 <body class="text-slate-900 dark:text-zinc-100 min-h-screen font-sans antialiased selection:bg-emerald-500/30">
   <Navbar client:load />
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16 space-y-24">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16 space-y-14 sm:space-y-16">
     <section id="hero">
       <TerminalHero asciiText={asciiArt} client:load />
     </section>
 
-    <section id="about" class="space-y-6">
-      <h2 class="text-3xl font-bold tracking-tight">About</h2>
+    <section id="about" class="space-y-8">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">About</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         <div class="md:col-span-2 space-y-4 text-zinc-700 dark:text-zinc-300 leading-relaxed">
           <p>
@@ -156,17 +156,17 @@ const ogImage = new URL('/profile.jpg', Astro.site);
     </section>
 
     <section id="skills" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Technical Arsenal</h2>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Technical Arsenal</h2>
       <SkillsMatrix client:visible />
     </section>
 
     <section id="experience" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Command History (Experience)</h2>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Command History (Experience)</h2>
       <ExperienceTimeline client:visible />
     </section>
 
     <section id="projects" class="space-y-8">
-      <h2 class="text-3xl font-bold tracking-tight">Featured Architecture and Projects</h2>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Featured Architecture and Projects</h2>
       <FeaturedProjects client:visible />
     </section>
 

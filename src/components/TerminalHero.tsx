@@ -47,7 +47,7 @@ const infoGroups: InfoGroup[] = [
 
 export default function TerminalHero({ asciiText }: { asciiText: string }) {
   return (
-    <section className="relative mb-12">
+    <section className="relative">
       <div className="shadow-2xl shadow-[#b58900]/10 dark:shadow-emerald-900/20 border border-[#93a1a1]/40 dark:border-zinc-800 rounded-xl overflow-hidden">
         {/* Terminal Header */}
         <div className="relative overflow-hidden rounded-t-lg bg-[#eee8d5] dark:bg-zinc-900 border-b border-[#93a1a1]/40 dark:border-zinc-800">
@@ -65,14 +65,14 @@ export default function TerminalHero({ asciiText }: { asciiText: string }) {
         <div className="relative overflow-hidden rounded-b-lg bg-[#fdf6e3] dark:bg-zinc-900/95">
           <div className="absolute inset-0 bg-black/[0.02] dark:bg-black/10 pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)] gap-8 lg:gap-16 py-8 px-6 sm:px-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)] gap-8 lg:gap-16 py-8 px-4 sm:px-10 items-center">
             {/* ASCII Art Side */}
             <pre className="font-mono text-[#b58900] dark:text-yellow-100/90 text-[7px] leading-[1.0] whitespace-pre m-0 p-0 -mt-8 select-none hidden lg:block">
               {asciiText}
             </pre>
 
             {/* Info Side */}
-            <div className="font-mono text-[13px] leading-relaxed text-[#657b83] dark:text-zinc-300 min-w-0">
+            <div className="font-mono text-xs sm:text-[13px] leading-relaxed text-[#657b83] dark:text-zinc-300 min-w-0">
               {infoGroups.map((group) => (
                 <div key={group.title} className="mb-4 last:mb-0">
                   <div className="text-[#859900] dark:text-emerald-300 font-semibold">
@@ -82,7 +82,7 @@ export default function TerminalHero({ asciiText }: { asciiText: string }) {
                   </div>
                   {group.rows.map((row) => (
                     <div key={row.label} className="flex gap-2 py-[1px]">
-                      <span className="shrink-0 text-[#cb4b16] dark:text-orange-300 w-28 sm:w-32">
+                      <span className="shrink-0 text-[#cb4b16] dark:text-orange-300 w-20 sm:w-32">
                         {row.label}
                       </span>
                       <span className="text-[#93a1a1] dark:text-zinc-500">:</span>
