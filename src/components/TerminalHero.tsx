@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
 interface InfoRow {
   label: string;
   value: string;
@@ -8,13 +10,39 @@ interface InfoGroup {
   rows: InfoRow[];
 }
 
+/**
+ * Ordered "tokens" for the terminal typewriter. Typed tokens reveal
+ * char-by-char; instant tokens appear at once; newline moves to the next
+ * visual line. Kept at module scope so it's a stable reference for effects.
+ */
+type Token =
+  | { kind: "prompt" }
+  | { kind: "type"; text: string; className: string }
+  | { kind: "instant"; text: string; className: string }
+  | { kind: "newline"; gap?: boolean };
+
+const PROMPT_TOKENS: Token[] = [
+  { kind: "prompt" },
+  { kind: "type", text: "cat intro.txt", className: "text-[#93a1a1] dark:text-zinc-500" },
+  { kind: "newline" },
+  {
+    kind: "instant",
+    text: "Full-Stack & GenAI dev — React, Django, AWS. Secure deployments & end-to-end automation at scale.",
+    className: "text-[#586e75] dark:text-zinc-400 leading-relaxed",
+  },
+  { kind: "newline", gap: true },
+  { kind: "prompt" },
+  { kind: "type", text: "echo $STATUS ", className: "text-[#93a1a1] dark:text-zinc-500" },
+  { kind: "type", text: '"open to work" ', className: "text-[#2aa198] dark:text-emerald-300" },
+];
+
 const infoGroups: InfoGroup[] = [
   {
     title: "vineet@portfolio",
     rows: [
       { label: "User", value: "Vineet Yadav" },
       { label: "Role", value: "Full-Stack / GenAI / AWS" },
-      { label: "Uptime", value: "~4 Years" },
+      { label: "Uptime", value: "~ 4 Years" },
       { label: "Location", value: "Gurgaon, IN" },
       { label: "Education", value: "B.E. CSE, UIET Panjab University" },
     ],
@@ -93,25 +121,135 @@ export default function TerminalHero({ asciiText }: { asciiText: string }) {
                   ))}
                 </div>
               ))}
-              <div className="text-[#93a1a1] dark:text-zinc-500 text-xs mt-2 space-y-1">
-                <div>
-                  <span className="text-[#859900] dark:text-emerald-400">➜</span> ~{" "}
-                  <span className="text-[#93a1a1] dark:text-zinc-500">cat intro.txt</span>
-                </div>
-                <div className="text-[#586e75] dark:text-zinc-400 leading-relaxed">
-                  Full-Stack &amp; GenAI dev — React, Django, AWS. Secure
-                  deployments &amp; end-to-end automation at scale.
-                </div>
-                <div className="pt-1">
-                  <span className="text-[#859900] dark:text-emerald-400">➜</span> ~{" "}
-                  <span className="text-[#93a1a1] dark:text-zinc-500">echo $STATUS</span>{" "}
-                  <span className="text-[#2aa198] dark:text-emerald-300">"open to work"</span>
-                </div>
-              </div>
+              <TerminalPrompt />
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * Typewriter-animated command block at the bottom of the terminal.
+ * Types the `cat intro.txt` / `echo $STATUS` sequence with a blinking cursor.
+ * Respects `prefers-reduced-motion` (renders fully, no animation).
+ */
+function TerminalPrompt() {
+  const [tokenIndex, setTokenIndex] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const [done, setDone] = useState(false);
+  const reduced = useRef(false);
+
+  useEffect(() => {
+    reduced.current =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced.current) {
+      setTokenIndex(PROMPT_TOKENS.length);
+      setDone(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (reduced.current) return;
+    if (tokenIndex >= PROMPT_TOKENS.length) {
+      setDone(true);
+      return;
+    }
+    const tok = PROMPT_TOKENS[tokenIndex];
+    if (tok.kind === "type") {
+      if (charCount < tok.text.length) {
+        const t = setTimeout(() => setCharCount((c) => c + 1), 45);
+        return () => clearTimeout(t);
+      }
+      const t = setTimeout(() => {
+        setTokenIndex((i) => i + 1);
+        setCharCount(0);
+      }, 100);
+      return () => clearTimeout(t);
+    }
+    const delay = tok.kind === "instant" ? 220 : tok.kind === "newline" ? 120 : 70;
+    const t = setTimeout(() => setTokenIndex((i) => i + 1), delay);
+    return () => clearTimeout(t);
+  }, [tokenIndex, charCount]);
+
+  // Build visual lines from tokens revealed so far.
+  const lines: { gapBefore: boolean; content: ReactNode[] }[] = [
+    { gapBefore: false, content: [] },
+  ];
+  for (let i = 0; i < PROMPT_TOKENS.length && i <= tokenIndex; i++) {
+    const tok = PROMPT_TOKENS[i];
+    const current = lines[lines.length - 1];
+    if (tok.kind === "newline") {
+      lines.push({ gapBefore: !!tok.gap, content: [] });
+    } else if (tok.kind === "prompt") {
+      current.content.push(
+        <span key={i}>
+          <span className="text-[#859900] dark:text-emerald-400">➜</span> ~{" "}
+        </span>
+      );
+    } else {
+      const active = i === tokenIndex && !done;
+      const shown = tok.kind === "type" && active ? tok.text.slice(0, charCount) : tok.text;
+      current.content.push(
+        <span key={i} className={tok.className}>
+          {shown}
+        </span>
+      );
+    }
+  }
+
+  const cursor = (
+    <span className="inline-block w-[0.55em] h-[1em] -mb-[2px] ml-[1px] bg-[#586e75] dark:bg-emerald-400 animate-terminal-blink align-middle" />
+  );
+
+  // Fully-typed lines, used as an invisible placeholder so the block reserves
+  // its final height up-front. This prevents the container (and the ASCII art
+  // alongside it) from shifting as text types in line-by-line.
+  const fullLines: { gapBefore: boolean; content: ReactNode[] }[] = [
+    { gapBefore: false, content: [] },
+  ];
+  for (let i = 0; i < PROMPT_TOKENS.length; i++) {
+    const tok = PROMPT_TOKENS[i];
+    const current = fullLines[fullLines.length - 1];
+    if (tok.kind === "newline") {
+      fullLines.push({ gapBefore: !!tok.gap, content: [] });
+    } else if (tok.kind === "prompt") {
+      current.content.push(
+        <span key={i}>
+          <span className="text-[#859900] dark:text-emerald-400">➜</span> ~{" "}
+        </span>
+      );
+    } else {
+      current.content.push(
+        <span key={i} className={tok.className}>
+          {tok.text}
+        </span>
+      );
+    }
+  }
+
+  return (
+    <div className="relative text-[#93a1a1] dark:text-zinc-500 text-xs mt-2">
+      {/* Invisible full-height placeholder to reserve final size */}
+      <div aria-hidden="true" className="invisible">
+        {fullLines.map((line, li) => (
+          <div key={li} className={line.gapBefore ? "mt-2" : undefined}>
+            {line.content}
+          </div>
+        ))}
+      </div>
+
+      {/* Animated overlay */}
+      <div className="absolute inset-0">
+        {lines.map((line, li) => (
+          <div key={li} className={line.gapBefore ? "mt-2" : undefined}>
+            {line.content}
+            {li === lines.length - 1 && cursor}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

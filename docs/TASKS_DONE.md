@@ -62,6 +62,14 @@ This file records all tasks from the project todo list that have been **complete
 - [x] **Profile icon border + size** — replaced grey gradient frame (`bg-gradient-to-br from-zinc-400 to-zinc-600` + `p-[2px]`) with subtle `ring-1 ring-zinc-200 dark:ring-zinc-700` (consistent with site borders); size `w-9 h-9` → `w-10 h-10` (36→40px). Applied to both mobile + desktop cards. `astro check` 0 errors.
 - [x] **Profile avatar redesign** — switched to standard circular avatar (`rounded-full`) with layered ring (`ring-2 ring-white dark:ring-zinc-900` cutout + `outline outline-1 outline-zinc-200 dark:outline-zinc-700` edge) + `shadow-sm shadow-black/10`; removed wrapper div. Modern navbar avatar look (GitHub/Vercel style). Both mobile + desktop cards. `astro check` 0 errors.
 
+### Animations (high-impact batch)
+- [x] **Terminal typewriter + blinking cursor** — `TerminalHero` bottom command block now types out char-by-char (`cat intro.txt` → output → `echo $STATUS "open to work"`) via a token-driven `TerminalPrompt` sub-component with a blinking block cursor (`.animate-terminal-blink`). Token list at module scope (stable ref). Honors `prefers-reduced-motion` (renders full text, no animation). Neofetch info groups stay static (they read as already-printed output).
+- [x] **Scroll-reveal fade-up** — About/Skills/Experience/Projects/Contact sections get `.reveal` (opacity+translateY) toggled to `.is-visible` by an inline IntersectionObserver in `index.astro` (threshold 0.12, unobserve after reveal). Reduced-motion + no-IO fallback shows everything immediately. Hero excluded (above fold, has typing anim).
+- [x] **Staggered skill pills** — `SkillsMatrix` pill containers get `.stagger`; self-contained IntersectionObserver in the component sets incremental `transition-delay` per pill (cap 320ms) then adds `.is-visible` for a cascading entrance. Reduced-motion/no-IO fallback. (Handled in-component since it's a `client:visible` island.)
+- Infra added to `global.css`: `.animate-terminal-blink`, `.reveal`, `.stagger` utilities + `@keyframes terminal-blink` + a global `prefers-reduced-motion` guard that disables all of them.
+- Verified: `astro check` **0/0/0**, `eslint` clean (moved token array to module scope to avoid needing an unavailable `react-hooks/exhaustive-deps` disable), `npm run build` passes, dev server renders (HTTP 200), animation classes present in built CSS. Medium/subtle animation ideas logged in `TASKS_PENDING.md`.
+- [x] **Fixed ASCII art layout shift during typing** — the info column grew line-by-line while typing, and with `items-center` this moved the centered ASCII art. Fixed via a min-height reservation: `TerminalPrompt` renders an invisible fully-typed placeholder to reserve final height, with the animated text overlaid absolutely — so the info column is at final height from the first frame and the centered ASCII never moves. (Alignment kept as `items-center` per preference — no top-anchoring.) `astro check` 0/0/0, build passes.
+
 ### Repo hygiene (cont.)
 - [x] **Removed duplicate root assets** — deleted redundant `ascii.txt` + `profile.jpg` from project root; processed copies remain in `src/assets/ascii.txt` (whitespace-trimmed, imported via `?raw`) and `public/profile.jpg` (resized/optimized, served at `/profile.jpg`).
 - [x] **Full repo hygiene pass (dead code + deps)** — audited entire repo; all 6 AGENTS.md-required components present & implemented (nothing missing from POC). Removed:
@@ -92,6 +100,6 @@ This file records all tasks from the project todo list that have been **complete
 ## Verification
 - `npm run build` passes; `sitemap-index.xml` generated; meta CSP + JSON-LD present in `dist/index.html`.
 - Dev server serves CSS + hydrated React islands; ThemeToggle works.
-- All visible copy sourced from INFO.md (except intentional terminal flavor: `Uptime ~4 Years`, `open to work`).
+- All visible copy sourced from INFO.md (except intentional terminal flavor: `Uptime ~ 4 Years`, `open to work`).
 - AWS services consistent across INFO.md, SkillsMatrix, TerminalHero.
 - Private docs absent from `dist/` and untracked in both branches.
