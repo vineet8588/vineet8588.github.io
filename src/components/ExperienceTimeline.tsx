@@ -1,3 +1,7 @@
+// Copyright © 2026 Vineet Yadav. All rights reserved.
+// Portfolio source: https://github.com/vineet8588
+// Original work — do not copy, clone-and-republish, or pass off as your own.
+// Contact vineetyadav8588@gmail.com for permission to reuse.
 interface ExperienceEntry {
   date: string;
   role: string;

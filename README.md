@@ -109,4 +109,10 @@ To add a section: create a component in `src/components/`, import it in `src/pag
 - **Astro version**: Astro v7 + React 19 + Tailwind v4.
 
 ## License
-Personal portfolio. Replace content with your own before reusing the template.
+© 2026 Vineet Yadav. All rights reserved.
+
+This portfolio's source code, design, and written content are original work and are licensed under **CC BY-NC-ND 4.0**. You may view and learn from it, but you may **not** copy, redistribute, or republish it — in whole or in part, modified or unmodified — as your own, and not for commercial purposes, without explicit permission.
+
+- Source: https://github.com/vineet8588
+- Contact: vineetyadav8588@gmail.com
+- Full license: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
