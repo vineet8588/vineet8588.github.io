@@ -1,8 +1,8 @@
-# Premium Full Stack Developer Portfolio
+# Portfolio
 
-A high-performance, recruiter-optimized portfolio website built with **Astro**, **React**, and **Tailwind CSS v4**.
+A high-performance, optimized portfolio website built with **Astro**, **React**, and **Tailwind CSS v4**.
 
-> Personal site for **Vineet Yadav** — Full-Stack & GenAI Developer. Content is sourced from `INFO.md` (kept private / gitignored).
+> Personal site for **Vineet Yadav** — Full-Stack & GenAI Developer.
 
 ## Design Aesthetic
 - **Dark Mode**: Premium hacker vibe — deep zinc background, emerald greens, subtle grid + radial glow.
@@ -45,8 +45,6 @@ portfolio/
 └── package.json
 ```
 
-> Note: `AGENTS.md`, `CLAUDE.md`, and `INFO.md` are intentionally **untracked and gitignored** (private, not part of the repo or deployed site).
-
 ## Getting Started
 
 ### Prerequisites
@@ -69,14 +67,14 @@ npm run lint       # eslint . (flat config)
 ```
 
 ## Sections
-| Section | Source | Notes |
-|---|---|---|
-| Hero (TerminalHero) | `INFO.md` | neofetch-style groups: identity, Languages, Stack (Frameworks/Tools/GenAI/AWS), Contact |
-| About | `INFO.md` | Bio + Education (B.E. CSE, UIET Panjab Univ., CGPA 8.32) + Certifications (linkable verify URLs) |
-| Skills | `INFO.md` | 6 categories: Languages, Frameworks, Developer Tools, Libraries, AI/ML, Cloud/AWS (10 AWS services) |
-| Experience | `INFO.md` | Deloitte USI (3 roles) + BGUS Australia internship |
-| Projects | owner | `FeaturedProjects.tsx` is a "Will Be Updated" placeholder — replace with real projects |
-| Contact | `INFO.md` | GitHub / LinkedIn / Email links |
+| Section | Notes |
+|---|---|
+| Hero (TerminalHero) | neofetch-style groups: identity, Languages, Stack (Frameworks/Tools/GenAI/AWS), Contact |
+| About | Bio + Education (B.E. CSE, UIET Panjab Univ., CGPA 8.32) + Certifications (linkable verify URLs) |
+| Skills | 6 categories: Languages, Frameworks, Developer Tools, Libraries, AI/ML, Cloud/AWS (10 AWS services) |
+| Experience | Deloitte USI (3 roles) + BGUS Australia internship |
+| Projects | `FeaturedProjects.tsx` is a "Will Be Updated" placeholder — replace with real projects |
+| Contact | GitHub / LinkedIn / Email links |
 
 ## SEO & Security
 - **Sitemap**: `@astrojs/sitemap` -> `dist/sitemap-index.xml`; `public/robots.txt` points to it.
@@ -104,7 +102,6 @@ To add a section: create a component in `src/components/`, import it in `src/pag
 - ✅ `npm run build` passes.
 - ✅ `npm run typecheck` (astro check) — 0 errors.
 - ✅ `npm run lint` (eslint) — clean.
-- ⚠️ Lighthouse score: owner-run audit pending; optimize `profile.jpg` / hosting based on results.
 
 ## Troubleshooting
 - **Brand icons**: `lucide-react` v1 dropped `Github`/`LinkedIn`/`Twitter`, so brand icons use `react-icons` (`FaGithub`, `FaLinkedinIn`) in `ContactFooter.tsx` and `Navbar.tsx`.
