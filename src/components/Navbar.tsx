@@ -53,7 +53,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-emerald transition-colors"
+                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
                   const target = document.querySelector(link.href);
@@ -78,11 +78,11 @@ export default function Navbar() {
               />
             </div>
             <div className="leading-tight">
-              <div className="text-emerald-500 dark:text-emerald-300 font-semibold text-sm">
+              <div className="text-zinc-900 dark:text-white font-semibold text-sm">
                 Vineet Yadav
               </div>
               <div className="text-zinc-500 dark:text-zinc-400 text-[11px]">
-                Full-Stack / GenAI / AWS
+                Software Developer
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2 rounded-lg text-zinc-600 dark:text-zinc-300 hover:text-emerald hover:bg-emerald/10 transition-colors"
+            className="p-2 rounded-lg text-zinc-600 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300 hover:bg-emerald/10 transition-colors"
           >
             {theme === 'dark' ? (
               <Sun className="w-5 h-5" />
