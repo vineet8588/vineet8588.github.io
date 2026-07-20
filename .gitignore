@@ -27,3 +27,6 @@ pnpm-debug.log*
 AGENTS.md
 CLAUDE.md
 INFO.md
+
+# Editor settings (local only)
+.vscode/
