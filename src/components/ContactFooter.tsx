@@ -23,7 +23,7 @@ export default function ContactFooter() {
             href="mailto:vineetyadav8588@gmail.com"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium font-mono
                        bg-emerald text-emerald-foreground rounded-lg hover:bg-emerald-glow
-                       hover:shadow-[0_0_20px_oklch(0.65_0.2_155/0.4)] transition-all duration-300
+                       animate-cta-glow transition-colors duration-300
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald/50"
           >
             <Mail className="w-4 h-4" />

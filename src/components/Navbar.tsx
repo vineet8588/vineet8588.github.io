@@ -1,5 +1,5 @@
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface NavLink {
   href: string;
@@ -16,12 +16,38 @@ export const NAV_LINKS: NavLink[] = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('about');
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof document !== 'undefined') {
       return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
     return 'light';
   });
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const sections = NAV_LINKS
+      .map((link) => document.querySelector(link.href))
+      .filter((el): el is Element => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveSection(`#${visible[0].target.id}`);
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
@@ -41,6 +67,13 @@ export default function Navbar() {
     const top = target.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ behavior: 'smooth', top });
   };
+
+  const linkClass = (href: string) =>
+    `text-sm font-medium transition-colors ${
+      activeSection === href
+        ? 'text-emerald-500 dark:text-emerald-400'
+        : 'text-zinc-700 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300'
+    }`;
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200 dark:border-zinc-800 transition-all duration-300">
@@ -82,7 +115,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors"
+                className={linkClass(link.href)}
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(link.href);
@@ -146,7 +179,11 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="py-3 text-base font-medium text-zinc-700 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300 transition-colors"
+                  className={`py-3 text-base font-medium transition-colors ${
+                    activeSection === link.href
+                      ? 'text-emerald-500 dark:text-emerald-400'
+                      : 'text-zinc-700 dark:text-zinc-300 hover:text-emerald-400 dark:hover:text-emerald-300'
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection(link.href);

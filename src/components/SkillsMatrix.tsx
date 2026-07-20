@@ -129,7 +129,7 @@ export default function SkillsMatrix() {
         {categories.map(category => (
           <div 
             key={category.title} 
-            className="h-full flex flex-col bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg hover:border-emerald-500 transition-colors shadow-sm"
+            className="h-full flex flex-col bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg shadow-sm"
           >
             <h3 className="text-zinc-800 dark:text-zinc-200 font-bold mb-4 uppercase tracking-wide text-xs">
               {category.title}
