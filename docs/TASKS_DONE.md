@@ -64,6 +64,16 @@ This file records all tasks from the project todo list that have been **complete
 
 ### Repo hygiene (cont.)
 - [x] **Removed duplicate root assets** — deleted redundant `ascii.txt` + `profile.jpg` from project root; processed copies remain in `src/assets/ascii.txt` (whitespace-trimmed, imported via `?raw`) and `public/profile.jpg` (resized/optimized, served at `/profile.jpg`).
+- [x] **Full repo hygiene pass (dead code + deps)** — audited entire repo; all 6 AGENTS.md-required components present & implemented (nothing missing from POC). Removed:
+  - **Dead CSS (~152 lines):** entire unused `@layer utilities` + `@layer components` in `global.css` (~24 classes: `.glass`, `.skill-tag`, `.project-card`, `.nav-link`, `.btn-*`, `.animate-*`, `.section-*`, etc. — 0 references); unused `--color-crimson*` tokens + `--font-heading`; `tw-animate-css` + `shadcn/tailwind.css` imports. `global.css` 323→171 lines. Kept `--color-emerald*` (still used by ContactFooter).
+  - **Unused shadcn/ui scaffolding:** deleted `src/components/ui/` (9 primitives, all 0 imports), `src/lib/utils.ts`, `components.json`. Confirmed inline Tailwind is the right approach for this stack (no genuinely-repeated complex patterns warranting extraction).
+  - **Unused deps (6):** `@base-ui/react`, `class-variance-authority`, `clsx`, `tailwind-merge`, `tw-animate-css`, `shadcn` (CLI, shouldn't be in deps). deps 20→13.
+  - **Moved** `@types/react`/`@types/react-dom` from `dependencies` → `devDependencies`.
+  - **Renamed** package `spiffy-mercury` → `portfolio`.
+  - **tsconfig:** collapsed 5 path aliases (referencing deleted `lib`/`hooks`/`ui` dirs) to just `@/*`.
+  - **README:** removed stale shadcn/ui + crimson references, fixed structure diagram.
+  - **index.astro:** added explicit `is:inline` to JSON-LD script (silences the only remaining hint).
+  - Verified: `astro check` **0 errors / 0 warnings / 0 hints**, `eslint` clean, `npm run build` passes (emerald tokens intact in output). `dist/`, `.astro/`, `node_modules/`, env, private docs confirmed gitignored & untracked.
 
 ### Content (from INFO.md)
 - [x] **Filled all sections from INFO.md** — TerminalHero, SkillsMatrix (6 categories), ExperienceTimeline (Deloitte + BGUS), ContactFooter (real links), index.astro title/meta.
