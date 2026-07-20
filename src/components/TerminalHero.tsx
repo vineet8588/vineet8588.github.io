@@ -66,7 +66,6 @@ const infoGroups: InfoGroup[] = [
     title: "Contact",
     rows: [
       { label: "Email", value: "vineetyadav8588@gmail.com" },
-      { label: "Phone", value: "+91 " },
       { label: "LinkedIn", value: "linkedin.com/in/vineetyadav8588" },
       { label: "GitHub", value: "github.com/vineet8588" },
     ],
