@@ -12,7 +12,7 @@ interface ExperienceEntry {
 const experienceEntries: ExperienceEntry[] = [
   {
     date: 'Jun 2026 - Present',
-    role: 'Solution Advisor (Security Engineer 2)',
+    role: 'Software Engineer 2',
     company: 'Deloitte USI',
     bulletPoints: [
       'Follow Agentic SDLC methodologies as a software developer.',
@@ -22,7 +22,7 @@ const experienceEntries: ExperienceEntry[] = [
   },
   {
     date: 'Jun 2024 - Jun 2026',
-    role: 'Advisory Associate Solution Advisor',
+    role: 'Software Engineer',
     company: 'Deloitte USI',
     bulletPoints: [
       'Operated as a Full-Stack Developer specializing in Generative AI (GenAI) automation use cases.',
@@ -32,7 +32,7 @@ const experienceEntries: ExperienceEntry[] = [
   },
   {
     date: 'Aug 2022 - May 2024',
-    role: 'Advisory Analyst',
+    role: 'Associate Software Engineer',
     company: 'Deloitte USI',
     bulletPoints: [
       'Developed the React frontend for an automation product using Shadcn, Tailwind, Tanstack, Material UI, React Router, React Query, Axios, Vite, React Hook Form.',
